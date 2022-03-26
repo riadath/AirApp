@@ -20,6 +20,7 @@ public class LoginInfo {
         /* TODO: NOKI
             Validate the password and username
         */
+        //A comment to test git branches-delete later
 
         return true;
     }
