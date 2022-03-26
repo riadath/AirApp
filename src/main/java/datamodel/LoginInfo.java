@@ -3,8 +3,8 @@ package datamodel;
 import java.util.ArrayList;
 
 public class LoginInfo {
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
 
     public LoginInfo(String username, String password) {
