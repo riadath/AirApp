@@ -17,7 +17,7 @@ public class LoginInfo {
     }
 
     public boolean isValid() {
-        /* TODO: NOKI
+        /*  NOKI
             Validate the password and username
         */
         //A comment to test git branches-delete later
