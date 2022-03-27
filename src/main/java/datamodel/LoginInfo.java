@@ -19,8 +19,6 @@ public class LoginInfo {
         /*  TODONE: NOKI
             Validate the password and username
 //        */
-        System.out.println(DB.auth(this.username, this.password));
-
-        return true;
+        return DB.auth(this.username, this.password);
     }
 }
