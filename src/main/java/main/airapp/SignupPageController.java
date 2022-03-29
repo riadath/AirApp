@@ -43,6 +43,12 @@ public class SignupPageController {
     }
 
     public boolean validateUserData(){
+
+        /*TODO: check "SignupInfo" Class. All the information is
+                stored in the signupInfo object.if the data is valid
+                push them to db.
+        */
+
         SignupInfo signupInfo = new SignupInfo(nameTextField.getText(),emailTextField.getText(),
                 countryTextField.getText(),passportTextField.getText(),passwordTextField.getText(),
                 confirmPassTextField.getText());
