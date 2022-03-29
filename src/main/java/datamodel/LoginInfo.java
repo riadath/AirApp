@@ -17,10 +17,6 @@ public class LoginInfo {
     }
 
     public boolean isValid() {
-        /*  TODONE: NOKI
-            Validate the password and username
-//        */
-        AuthRepository authRepository = new AuthRepository();
-        return authRepository.auth(username, password);
+        return new AuthRepository().auth(username, password);
     }
 }
