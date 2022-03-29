@@ -1,6 +1,5 @@
 package datamodel;
-
-import java.util.ArrayList;
+import database.*;
 
 public class LoginInfo {
     private final String username;
@@ -17,10 +16,9 @@ public class LoginInfo {
     }
 
     public boolean isValid() {
-        /* TODO: NOKI
+        /*  TODONE: NOKI
             Validate the password and username
-        */
-
-        return true;
+//        */
+        return DB.auth(this.username, this.password);
     }
 }

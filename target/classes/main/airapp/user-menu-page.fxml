@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="main.airapp.userMenuPageController">
+            fx:controller="main.airapp.UserMenuPageController">
     <children>
         <Button fx:id="userMenuPage" layoutX="64.0" layoutY="66.0" mnemonicParsing="false" prefHeight="42.0"
                 prefWidth="80.0" text="Flight Schedule" wrapText="true"/>
