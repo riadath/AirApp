@@ -10,7 +10,7 @@ public class DB {
     static boolean authCond;
 
 
-    public static boolean auth (String username, String password) {
+    public static boolean auth(String username, String password) {
         authCond = false;
         try {
             connection = DriverManager.getConnection(dbLink);
@@ -18,7 +18,7 @@ public class DB {
             stmt = connection.createStatement();
             ResultSet result = stmt.executeQuery("select * from account_info");
 
-            while(!authCond  && result.next()) {
+            while (!authCond && result.next()) {
                 authCond = result.getString("username").equals(username) && result.getString("password").equals(password);
             }
 

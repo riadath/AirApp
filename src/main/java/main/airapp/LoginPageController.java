@@ -16,13 +16,15 @@ import java.util.Objects;
 
 public class LoginPageController {
     @FXML
-    public TextField usernameTextField;
+    private TextField usernameTextField;
     @FXML
-    public PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    public Button loginButton;
+    private Button loginButton;
     @FXML
-    public Button signUpButton;
+    private Button signUpButton;
+    @FXML
+    private Label wrongPassLabel;
 
     private Parent root;
     private Stage stage;
@@ -33,9 +35,10 @@ public class LoginPageController {
         LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
 
         if (!loginInfo.isValid()) {
-
+            wrongPassLabel.setText("Username or Password incorrect!");
             return;
         }
+        wrongPassLabel.setText("");
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-menu-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
