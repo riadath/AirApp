@@ -42,6 +42,7 @@ public class SignupPageController {
         stage.show();
     }
 
+
     public boolean validateUserData(){
 
         /*TODO: check "SignupInfo" Class. All the information is
@@ -54,6 +55,13 @@ public class SignupPageController {
                 confirmPassTextField.getText());
         String infoValidation = signupInfo.validateInfo();
         signupWarningLabel.setText(infoValidation);
+        if (infoValidation.length() == 0) {
+//            switchToLoginMenu();
+            /*TODO: tis switches back to login page.
+                switchTOLoginMenu function e  event.getSource ki kore idk eikhane thik kor
+             */
+        }
         return (infoValidation.equals(""));
     }
+
 }

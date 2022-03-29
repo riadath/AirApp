@@ -11,15 +11,10 @@ public class AuthRepository extends DB {
         super();
     }
 
-    static String repository_name = "account_info";
-
-    public ResultSet list () {
-        String query_statement = "SELECT * FROM " + repository_name + ";";
-        return query (query_statement);
-    }
+    static String table_name = "account_info";
 
     public boolean auth (String username, String password) {
-        ResultSet accounts = list();
+        ResultSet accounts = list(table_name);
         boolean authCond = false;
         try {
             while (!authCond && accounts.next()) {

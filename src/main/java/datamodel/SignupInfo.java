@@ -1,17 +1,24 @@
 package datamodel;
 
+import database.repository.UserRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.*;
 
 public class SignupInfo {
-    private String name;
-    private String email;
-    private String countryOfResidence;
-    private String passportNo;
-    private String password;
-    private String confirmPass;
+    private final String name;
+    private final String email;
+    private final String countryOfResidence;
+    private final String passportNo;
+    private final String password;
+    private final String confirmPass;
+
+//    private final ArrayList<String> user_info = new ArrayList<>();
 
     public SignupInfo(String name, String email, String countryOfResidence, String passportNo, String password, String confirmPass) {
+
         this.name = name;
         this.email = email;
         this.countryOfResidence = countryOfResidence;
@@ -21,7 +28,7 @@ public class SignupInfo {
     }
 
     private boolean checkEmail() {
-        String emailRegex = "^(.+)@(.+)$";
+        String emailRegex = "^([\\w-]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.find();
@@ -38,41 +45,37 @@ public class SignupInfo {
     }
 
     public String validateInfo() {
-        String ret = "";
+        String warningString = "";
 
         if (name.length() == 0) {
-            ret = "Name field is empty";
+            warningString = "Name field is empty";
         } else if (name.length() > 128) {
-            ret = "Name must be less than 128 characters";
+            warningString = "Name must be less than 128 characters";
+        } else if (countryOfResidence.length() == 0) {
+            warningString = "Enter Your Country Of Residence";
         } else if (!checkEmail()) {
-            ret = "Enter a valid email";
+            warningString = "Enter a valid email";
         } else if (!checkPass()) {
-            ret = "Password must contain at least 8 letters, an alphabet and a number";
+            warningString = "Password must contain at least 8 letters, an alphabet and a number";
         } else if (!Objects.equals(password, confirmPass)) {
-            ret = "Confirmation Mismatched";
+            warningString = "Confirmation Mismatched";
         } else if (passportNo.length() == 0) {
-            ret = "Enter your passport number";
+            warningString = "Enter your passport number";
         }
-        return ret;
+
+        if (warningString.length() == 0) {
+//            user_info.addAll(List.of(new String[]{
+//                    name,email,countryOfResidence,passportNo,password,confirmPass
+//            }));
+            new UserRepository().insert(new String[]{
+                    name, email, countryOfResidence, passportNo, password
+            });
+        }
+
+        return warningString;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCountryOfResidence() {
-        return countryOfResidence;
-    }
-
-    public String getPassportNo() {
-        return passportNo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+//    public ArrayList<String> getUser_info() {
+//        return user_info;
+//    }
 }

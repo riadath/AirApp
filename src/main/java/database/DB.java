@@ -27,7 +27,7 @@ public class DB {
         }
     }
 
-    public ResultSet query(String query) {
+    public ResultSet select_query(String query) {
         ResultSet res;
         try {
             res = stmt.executeQuery(query);
@@ -38,41 +38,49 @@ public class DB {
             return null;
         }
     }
-}
 
-/*
-* package database;
-
-import database.repository.authRepository;
-
-import java.sql.*;
-
-public class DB {
-
-    static String dbLink = "jdbc:sqlite:src/main/resources/AirAppDb.db";
-    static authRepository connection;
-    static Statement stmt;
-    static boolean authCond;
-
-
-    public static boolean auth (String username, String password) {
-        authCond = false;
+    public void insert_query (String query) {
         try {
-            connection = DriverManager.getConnection(dbLink);
-
-            stmt = connection.createStatement();
-            ResultSet result = stmt.executeQuery("select * from account_info");
-
-            while(!authCond  && result.next()) {
-                authCond = result.getString("username").equals(username) && result.getString("password").equals(password);
-            }
-
+            connection.prepareStatement(query).executeUpdate();
         } catch (SQLException e) {
+            System.out.println("Insert query failed for " + query);
             e.printStackTrace();
-        } finally {
-            return authCond;
         }
     }
+
+    public ResultSet list(String table_name) {
+        String query_statement = "SELECT * FROM " + table_name + ";";
+        return select_query(query_statement);
+    }
+
+    public void insert(String table_name, String[] values) {
+        StringBuilder query_statement = new StringBuilder("INSERT INTO " + table_name + " (");
+        String column_statement = "PRAGMA table_info (" + table_name + ")";
+
+        ResultSet column_list = select_query(column_statement);
+        try {
+            while (column_list.next()) {
+                if (column_list.getInt(("pk")) == 0) {
+                    query_statement.append(column_list.getString("name")).append(",");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (query_statement.charAt(query_statement.length() - 1) == ',') {
+            query_statement = new StringBuilder(query_statement.substring(0, query_statement.length() - 1));
+        }
+
+        query_statement.append(") VALUES (");
+        for (String value : values) {
+            query_statement.append("'").append(value).append("'").append(',');
+        }
+        if (query_statement.charAt(query_statement.length() - 1) == ',') {
+            query_statement = new StringBuilder(query_statement.substring(0, query_statement.length() - 1));
+        }
+        query_statement.append(")");
+
+        insert_query(String.valueOf(query_statement));
+    }
 }
-* */
 
