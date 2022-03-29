@@ -1,5 +1,6 @@
 package datamodel;
 import database.*;
+import database.repository.AuthRepository;
 
 public class LoginInfo {
     private final String username;
@@ -19,6 +20,7 @@ public class LoginInfo {
         /*  TODONE: NOKI
             Validate the password and username
 //        */
-        return DB.auth(this.username, this.password);
+        AuthRepository authRepository = new AuthRepository();
+        return authRepository.auth(username, password);
     }
 }
