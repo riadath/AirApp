@@ -34,7 +34,7 @@ public class SignupInfo {
             if ((z >= 'a' && z <= 'z') || (z >= 'A' && z <= 'Z')) alphabet++;
             if (z >= '1' && z <= '9') number++;
         }
-        return number > 0 && alphabet > 0 && password.length() > 8;
+        return number > 0 && alphabet > 0 && password.length() >= 8;
     }
 
     public String validateInfo() {

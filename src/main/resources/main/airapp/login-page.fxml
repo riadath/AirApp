@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(47,106,202,0.78);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.LoginPageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@loginPageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.LoginPageController">
     <children>
         <TextField fx:id="usernameTextField" layoutX="220.0" layoutY="158.0" prefHeight="25.0" prefWidth="173.0" promptText="Username" />
         <PasswordField fx:id="passwordField" layoutX="220.0" layoutY="212.0" prefHeight="25.0" prefWidth="173.0" promptText="Password" />
@@ -26,13 +26,13 @@
                 <Image url="@images/passwordLogo.png" />
             </image>
         </ImageView>
-        <Label layoutX="226.0" layoutY="8.0" prefHeight="62.0" prefWidth="216.0" style="-fx-background-color: rgba(149,193,255,0.67);" text="Air App">
+        <Label layoutX="227.0" layoutY="62.0" prefHeight="52.0" prefWidth="160.0" text="Air App">
             <font>
-                <Font size="45.0" />
+                <Font size="35.0" />
             </font>
         </Label>
         <VBox layoutX="-100.0" prefHeight="400.0" prefWidth="100.0" />
-        <ImageView fitHeight="66.0" fitWidth="88.0" layoutX="160.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="66.0" fitWidth="88.0" layoutX="250.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@images/airplaneLogo.png" />
             </image>
