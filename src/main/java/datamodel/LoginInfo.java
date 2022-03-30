@@ -1,5 +1,5 @@
 package datamodel;
-import database.*;
+import database.repository.AuthRepository;
 
 public class LoginInfo {
     private final String username;
@@ -11,14 +11,10 @@ public class LoginInfo {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public boolean isValid() {
-        /*  TODONE: NOKI
-            Validate the password and username
-//        */
-        return DB.auth(this.username, this.password);
+        /* TODO: user ar admin auth er jonne different scene e switch korbe
+
+         */
+        return username.contains(".")?new AuthRepository().userAuth(username, password) : new AuthRepository().adminAuth(username, password);
     }
 }

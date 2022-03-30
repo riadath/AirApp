@@ -42,12 +42,19 @@ public class SignupPageController {
         stage.show();
     }
 
-    public boolean validateUserData(){
+
+    public void validateUserData(){
         SignupInfo signupInfo = new SignupInfo(nameTextField.getText(),emailTextField.getText(),
                 countryTextField.getText(),passportTextField.getText(),passwordTextField.getText(),
                 confirmPassTextField.getText());
         String infoValidation = signupInfo.validateInfo();
-        signupWarningLabel.setText(infoValidation);
-        return (infoValidation.equals(""));
+        if(infoValidation.length() == 0) {
+            exitFromSignupButton.fire();
+        }
+        else {
+            signupWarningLabel.setText(infoValidation);
+        }
+
     }
+
 }
