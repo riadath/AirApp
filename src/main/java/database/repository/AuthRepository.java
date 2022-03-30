@@ -15,7 +15,7 @@ public class AuthRepository extends DB {
     static private final String admin_acc_table_name = "account_info";
     static private final String user_acc_table_name = "user_info";
 
-    UserInfo user;
+    static UserInfo user;
 
     public boolean adminAuth(String username, String password) {
         final String adminAuthQuery = "SELECT username,password FROM " + admin_acc_table_name + " WHERE username=\"" + username

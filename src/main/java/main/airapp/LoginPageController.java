@@ -27,19 +27,27 @@ public class LoginPageController extends Controller{
     private Label wrongPassLabel;
 
     @FXML
-    public void switchToUserMenu(ActionEvent event) throws IOException {
-        LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
+    public void switchToMenu(ActionEvent event) throws IOException {
 
-        if (!loginInfo.isValid()) {
+        LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
+        int validityCheck = loginInfo.isValid();
+        if (validityCheck == 0) {
             wrongPassLabel.setText("Username or Password incorrect!");
             return;
         }
         wrongPassLabel.setText("");
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-menu-page.fxml")));
+        String fxmlPath = "user-menu-page.fxml";
+        if(validityCheck == 2){
+            fxmlPath = "admin-panel-page.fxml";
+        }
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+
     }
+
 
 }
