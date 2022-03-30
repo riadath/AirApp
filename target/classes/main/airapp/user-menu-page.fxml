@@ -6,8 +6,9 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="main.airapp.UserMenuPageController">
     <children>
-        <Button fx:id="userMenuPage" layoutX="64.0" layoutY="66.0" mnemonicParsing="false" prefHeight="42.0"
-                prefWidth="80.0" text="Flight Schedule" wrapText="true"/>
+        <Button fx:id="userMenuPage" layoutX="64.0" layoutY="66.0" mnemonicParsing="false"
+                onAction="#switchToFlightSchedule" prefHeight="42.0" prefWidth="80.0" text="Flight Schedule"
+                wrapText="true"/>
         <Button layoutX="186.0" layoutY="66.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="80.0"
                 text="Book Ticket"/>
         <Button fx:id="exitButton" layoutX="573.0" layoutY="1.0" mnemonicParsing="false" onAction="#switchToLoginMenu"
