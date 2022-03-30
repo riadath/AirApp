@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="FlightTable" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.FlightScheduleController">
+   <children>
+      <TableView fx:id="FlightScheduler" layoutX="13.0" layoutY="7.0" prefHeight="346.0" prefWidth="871.0">
+        <columns>
+          <TableColumn fx:id="FlightID" prefWidth="67.0" text="Flight ID" />
+          <TableColumn fx:id="FlightName" prefWidth="187.0" text="Flight Name" />
+            <TableColumn fx:id="No_Of_Seats" prefWidth="74.0" text="No of seats" />
+            <TableColumn fx:id="Source" prefWidth="140.0" text="Source" />
+            <TableColumn fx:id="Destination" prefWidth="157.0" text="Destination" />
+            <TableColumn fx:id="DepartureDate" prefWidth="112.0" text="Date of departure" />
+            <TableColumn fx:id="DepartureTime" prefWidth="133.0" text="Time of Departure" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
