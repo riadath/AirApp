@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\master_da\Desktop\Academics\Object Oriented Programming\Project\src\main\resources\AirAppdb.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="AirAppReyadath" uuid="ddfa8b9f-e622-43ed-82a9-8457bd52cae2">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\akib1\OneDrive\Documents\CODE_DRIVE\ALL_JAVA\AirApp\src\main\resources\AirAppDb.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
