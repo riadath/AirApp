@@ -16,7 +16,7 @@
       fx:controller="main.airapp.LoginPageController">
     <children>
         <TextField fx:id="usernameTextField" layoutX="220.0" layoutY="158.0" prefHeight="25.0" prefWidth="173.0"
-                   promptText="Username"/>
+                   promptText="Email"/>
         <PasswordField fx:id="passwordField" layoutX="220.0" layoutY="212.0" prefHeight="25.0" prefWidth="173.0"
                        promptText="Password"/>
         <Button fx:id="loginButton" layoutX="271.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchToMenu"

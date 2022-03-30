@@ -3,7 +3,7 @@ package datamodel;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Flight {
+public class FlightInfo {
     private int id;
     private String FlightName;
     private int No_Of_Seats;
@@ -12,7 +12,7 @@ public class Flight {
     private LocalDate DepartureDate;
     private LocalTime DepartureTime;
 
-    public Flight(int id, String flightName, int no_Of_Seats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
+    public FlightInfo(int id, String flightName, int no_Of_Seats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
         this.id = id;
         FlightName = flightName;
         No_Of_Seats = no_Of_Seats;
