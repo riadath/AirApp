@@ -16,12 +16,11 @@ public class DB {
         try {
             connection.isValid(3500);
         } catch (Exception e) {
-            System.out.println("Creating database connection with " + dbLink);
             try {
                 connection = DriverManager.getConnection(dbLink);
                 stmt = connection.createStatement();
             } catch (SQLException ex) {
-                System.out.println("Could not create connection");
+                System.out.println("Could not create connection with link " + dbLink);
                 ex.printStackTrace();
             }
         }
@@ -35,6 +34,7 @@ public class DB {
         } catch (SQLException e) {
             System.out.println("Database query failed for query: ");
             System.out.println("<---" + query + "---->");
+            System.out.println(e.getSQLState());
             return null;
         }
     }
@@ -43,8 +43,9 @@ public class DB {
         try {
             connection.prepareStatement(query).executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Insert query failed for " + query);
-            e.printStackTrace();
+            System.out.println("Insert query failed for query: ");
+            System.out.println("<---" + query + "---->");
+            System.out.println(e.getSQLState());
         }
     }
 

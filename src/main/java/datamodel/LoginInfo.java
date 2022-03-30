@@ -1,5 +1,4 @@
 package datamodel;
-import database.*;
 import database.repository.AuthRepository;
 
 public class LoginInfo {
@@ -12,11 +11,10 @@ public class LoginInfo {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public boolean isValid() {
-        return new AuthRepository().auth(username, password);
+        /* TODO: user ar admin auth er jonne different scene e switch korbe
+
+         */
+        return username.contains(".")?new AuthRepository().userAuth(username, password) : new AuthRepository().adminAuth(username, password);
     }
 }
