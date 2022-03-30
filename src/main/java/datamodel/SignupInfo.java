@@ -2,8 +2,6 @@ package datamodel;
 
 import database.repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.regex.*;
 
@@ -55,7 +53,7 @@ public class SignupInfo extends UserInfo{
             warningString = "Name must be less than 128 characters";
         } else if (!checkEmail()) {
             warningString = "Enter a valid email";
-        } else if (getCountryOfResidence().length() == 0) {
+        } else if (getCountry().length() == 0) {
             warningString = "Enter Your Country Of Residence";
         } else if (getPassportNo().length() == 0) {
             warningString = "Passport Field is Empty";

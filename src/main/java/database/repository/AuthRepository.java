@@ -36,6 +36,10 @@ public class AuthRepository extends DB {
         ResultSet account = select_query(userAuthQuery);
         try {
 
+            user = new UserInfo(account);
+            System.out.println(user);
+
+
             return account.getString("email").equals(email) &&
                     account.getString("password").equals(password);
         } catch (SQLException e) {
@@ -44,4 +48,5 @@ public class AuthRepository extends DB {
         return false;
     }
 
+    public UserInfo getUser() { return user;}
 }
