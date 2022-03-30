@@ -1,4 +1,5 @@
 package datamodel;
+
 import database.repository.AuthRepository;
 
 public class LoginInfo {
@@ -15,6 +16,7 @@ public class LoginInfo {
         /* TODO: user ar admin auth er jonne different scene e switch korbe
 
          */
-        return username.contains(".")?new AuthRepository().userAuth(username, password) : new AuthRepository().adminAuth(username, password);
+        return username.contains(".") ? new AuthRepository().userAuth(username, password) :
+                new AuthRepository().adminAuth(username, password);
     }
 }

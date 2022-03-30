@@ -16,7 +16,7 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SignupPageController {
+public class SignupPageController extends Controller{
     @FXML
     private Button exitFromSignupButton;
     @FXML
@@ -34,15 +34,8 @@ public class SignupPageController {
     @FXML
     private TextField confirmPassTextField;
 
-    public void switchToLoginMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login-page.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
-
+    @FXML
     public void validateUserData(){
         SignupInfo signupInfo = new SignupInfo(nameTextField.getText(),emailTextField.getText(),
                 countryTextField.getText(),passportTextField.getText(),passwordTextField.getText(),

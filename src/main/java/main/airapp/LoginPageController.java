@@ -14,7 +14,7 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginPageController {
+public class LoginPageController extends Controller{
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -26,10 +26,6 @@ public class LoginPageController {
     @FXML
     private Label wrongPassLabel;
 
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
-
     @FXML
     public void switchToUserMenu(ActionEvent event) throws IOException {
         LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
@@ -40,14 +36,6 @@ public class LoginPageController {
         }
         wrongPassLabel.setText("");
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-menu-page.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    @FXML
-    public void switchToSignupPage(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sign-up-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
