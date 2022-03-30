@@ -43,25 +43,18 @@ public class SignupPageController {
     }
 
 
-    public boolean validateUserData(){
-
-        /*TODO: check "SignupInfo" Class. All the information is
-                stored in the signupInfo object.if the data is valid
-                push them to db.
-        */
-
+    public void validateUserData(){
         SignupInfo signupInfo = new SignupInfo(nameTextField.getText(),emailTextField.getText(),
                 countryTextField.getText(),passportTextField.getText(),passwordTextField.getText(),
                 confirmPassTextField.getText());
         String infoValidation = signupInfo.validateInfo();
-        signupWarningLabel.setText(infoValidation);
-        if (infoValidation.length() == 0) {
-//            switchToLoginMenu();
-            /*TODO: tis switches back to login page.
-                switchTOLoginMenu function e  event.getSource ki kore idk eikhane thik kor
-             */
+        if(infoValidation.length() == 0) {
+            exitFromSignupButton.fire();
         }
-        return (infoValidation.equals(""));
+        else {
+            signupWarningLabel.setText(infoValidation);
+        }
+
     }
 
 }
