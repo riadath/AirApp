@@ -57,7 +57,7 @@
                 <Button fx:id="exitFromSignupButton" mnemonicParsing="false" onAction="#switchToLoginMenu" prefHeight="25.0" prefWidth="65.0" text="Cancel" />
             </children>
         </HBox>
-      <Label fx:id="signupWarningLabel" layoutX="154.0" layoutY="16.0" prefHeight="76.0" prefWidth="524.0" textFill="RED" wrapText="true">
+      <Label fx:id="signupWarningLabel" layoutX="70.0" layoutY="16.0" prefHeight="76.0" prefWidth="678.0" textFill="RED" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>

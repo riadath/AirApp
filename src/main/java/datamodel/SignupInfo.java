@@ -5,7 +5,7 @@ import database.repository.UserRepository;
 import java.util.Objects;
 import java.util.regex.*;
 
-public class SignupInfo extends UserInfo{
+public class SignupInfo extends UserInfo {
 
     private final String confirmPass;
 
@@ -14,19 +14,19 @@ public class SignupInfo extends UserInfo{
         this.confirmPass = confirmPass;
     }
 
-    private boolean checkName () {
-        /* TODO:  https://www.ibm.com/docs/en/was/9.0.5?topic=files-object-names-what-name-string-cannot-contain
-            ei naming convention regex diye korte parbi?
-            user vs admin sign in er jonne lagbe.
+    private boolean checkName() {
+        if (getName().length() == 0 || getName().length() > 128) {
+            return false;
+        }
 
-            user (user@email.com) contains '.'
-            admin (mahdi) doesnt contain '.'
-         */
-        return true;
+        String nameRegex = "^[A-Za-z\\s]+$";
+        Pattern pattern = Pattern.compile(nameRegex);
+        Matcher matcher = pattern.matcher(getName());
+        return matcher.find();
     }
 
     private boolean checkEmail() {
-        if (getEmail().length()==0) return false;
+        if (getEmail().length() == 0) return false;
         String emailRegex = "^([\\w-]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(getEmail());
@@ -34,7 +34,7 @@ public class SignupInfo extends UserInfo{
     }
 
     private boolean checkPass() {
-        if (getPassword().length()==0) return false;
+        if (getPassword().length() == 0) return false;
         int alphabet = 0, number = 0;
         for (int i = 0; i < getPassword().length(); i++) {
             char z = getPassword().charAt(i);
@@ -47,10 +47,8 @@ public class SignupInfo extends UserInfo{
     public String validateInfo() {
         String warningString = "";
 
-        if (getName().length() == 0) {
-            warningString = "Name field is empty";
-        } else if (getName().length() > 128) {
-            warningString = "Name must be less than 128 characters";
+        if (!checkName()) {
+            warningString = "Invalid name.(Name must be less than 128 characters)";
         } else if (!checkEmail()) {
             warningString = "Enter a valid email";
         } else if (getCountry().length() == 0) {
