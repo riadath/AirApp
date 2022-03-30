@@ -37,7 +37,7 @@ public class LoginPageController extends Controller{
         }
         wrongPassLabel.setText("");
         String fxmlPath = "admin-panel-page.fxml";
-        if(validityCheck == 2){
+        if(validityCheck == 1){
             fxmlPath = "user-menu-page.fxml";
         }
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
