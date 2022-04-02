@@ -1,12 +1,11 @@
 package main.airapp;
 
-import datamodel.Flight;
+import datamodel.FlightInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -16,45 +15,43 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class FlightScheduleController extends Controller{
 
     @FXML
-    private TableView<Flight> FlightScheduler;
+    private TableView<FlightInfo> FlightScheduler;
 
     @FXML
-    private TableColumn<Flight, LocalDate> DepartureDate;
+    private TableColumn<FlightInfo, LocalDate> DepartureDate;
 
     @FXML
-    private TableColumn<Flight, LocalTime> DepartureTime;
+    private TableColumn<FlightInfo, LocalTime> DepartureTime;
 
     @FXML
-    private TableColumn<Flight, String> Destination;
+    private TableColumn<FlightInfo, String> Destination;
 
     @FXML
-    private TableColumn<Flight, Integer> FlightID;
+    private TableColumn<FlightInfo, Integer> FlightID;
 
     @FXML
-    private TableColumn<Flight, String> FlightName;
+    private TableColumn<FlightInfo, String> FlightName;
 
     @FXML
     private AnchorPane FlightTable;
 
     @FXML
-    private TableColumn<Flight, Integer> No_Of_Seats;
+    private TableColumn<FlightInfo, Integer> No_Of_Seats;
 
     @FXML
-    private TableColumn<Flight, String> Source;
+    private TableColumn<FlightInfo, String> Source;
 
-    ObservableList<Flight> list = FXCollections.observableArrayList(
-            new Flight(1,"Etihad Airways",69,"Bangladesh","London",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
-            new Flight(1,"Emirates",100,"Australia","Canada",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
-            new Flight(1,"GMG",50,"Singapore","Malaysia",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) )
+    ObservableList<FlightInfo> list = FXCollections.observableArrayList(
+            new FlightInfo(1,"Etihad Airways",69,"Bangladesh","London",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
+            new FlightInfo(1,"Emirates",100,"Australia","Canada",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
+            new FlightInfo(1,"GMG",50,"Singapore","Malaysia",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) )
     );
 
     public void initialize() {

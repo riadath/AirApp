@@ -1,6 +1,6 @@
 package main.airapp;
 
-import datamodel.Flight;
+import datamodel.FlightInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,20 +32,20 @@ public class AdminPanelController extends Controller {
     private TableColumn<?, ?> adminFlightsSource;
 
     @FXML
-    private TableView<Flight> adminFlightsTable;
+    private TableView<FlightInfo> adminFlightsTable;
 
     //TODO: do some stuff noki
 
-    ObservableList<Flight> listFlights = FXCollections.observableArrayList(
-            new Flight(1,"Etihad Airways","Bangladesh","London", LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
-            new Flight(2,"Emirates","Australia","Canada",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
-            new Flight(3,"GMG","Singapore","Malaysia",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) )
+    ObservableList<FlightInfo> listFlights = FXCollections.observableArrayList(
+            new FlightInfo(1,"Etihad Airways","Bangladesh","London", LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
+            new FlightInfo(2,"Emirates","Australia","Canada",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
+            new FlightInfo(3,"GMG","Singapore","Malaysia",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) )
     );
 
-    ObservableList<Flight> listAirplanes = FXCollections.observableArrayList(
-            new Flight(1,"Etihad Airways" ),
-            new Flight(2,"Emirates" ),
-            new Flight(3,"GMG" )
+    ObservableList<FlightInfo> listAirplanes = FXCollections.observableArrayList(
+            new FlightInfo(1,"Etihad Airways" ),
+            new FlightInfo(2,"Emirates" ),
+            new FlightInfo(3,"GMG" )
     );
 
 
