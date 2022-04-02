@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="515.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.AdminPanelController">
    <children>
-      <HBox alignment="CENTER" layoutX="3.0" layoutY="6.0" prefHeight="100.0" prefWidth="930.0" spacing="50.0">
+      <HBox alignment="CENTER" layoutX="3.0" layoutY="6.0" prefHeight="100.0" prefWidth="835.0" spacing="50.0">
          <children>
             <Button mnemonicParsing="false" onAction="#loadAirplanes" text="Airplanes" />
             <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights" />
@@ -34,5 +34,6 @@
             <TableColumn fx:id="adminFlightsDepartureTime" prefWidth="155.0" text="Departure Time" />
         </columns>
       </TableView>
+      <Button layoutX="882.0" layoutY="6.0" mnemonicParsing="false" onAction="#switchToLoginMenu" text="Exit" />
    </children>
 </AnchorPane>
