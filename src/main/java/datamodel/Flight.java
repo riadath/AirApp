@@ -21,6 +21,18 @@ public class Flight {
         DepartureDate = departureDate;
         DepartureTime = departureTime;
     }
+    public Flight(int id, String flightName, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
+        this.id = id;
+        FlightName = flightName;
+        Source = source;
+        Destination = destination;
+        DepartureDate = departureDate;
+        DepartureTime = departureTime;
+    }
+    public Flight(int id, String flightName ) {
+        this.id = id;
+        FlightName = flightName;
+    }
 
     public int getId() {
         return id;

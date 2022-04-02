@@ -22,7 +22,7 @@ import java.time.LocalTime;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class FlightScheduleController extends Controller implements Initializable{
+public class FlightScheduleController extends Controller{
 
     @FXML
     private TableView<Flight> FlightScheduler;
@@ -57,8 +57,7 @@ public class FlightScheduleController extends Controller implements Initializabl
             new Flight(1,"GMG",50,"Singapore","Malaysia",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) )
     );
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
         FlightID.setCellValueFactory(new PropertyValueFactory<>("id"));
         FlightName.setCellValueFactory( new PropertyValueFactory<>("FlightName"));
         No_Of_Seats.setCellValueFactory( new PropertyValueFactory<>("No_Of_Seats"));
