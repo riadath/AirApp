@@ -5,21 +5,35 @@ import java.time.LocalTime;
 
 public class FlightInfo {
     private int id;
-    private String FlightName;
-    private int No_Of_Seats;
-    private String Source;
-    private String Destination;
-    private LocalDate DepartureDate;
-    private LocalTime DepartureTime;
+    private String flightName;
+    private int noOfSeats;
+    private String source;
+    private String destination;
+    private LocalDate departureDate;
+    private LocalTime departureTime;
 
-    public FlightInfo(int id, String flightName, int no_Of_Seats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
+    public FlightInfo(int id, String flightName, int noOfSeats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
         this.id = id;
-        FlightName = flightName;
-        No_Of_Seats = no_Of_Seats;
-        Source = source;
-        Destination = destination;
-        DepartureDate = departureDate;
-        DepartureTime = departureTime;
+        this.flightName = flightName;
+        this.noOfSeats = noOfSeats;
+        this.source = source;
+        this.destination = destination;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+    }
+
+    public FlightInfo(int id, String flightName, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
+        this.id = id;
+        this.flightName = flightName;
+        this.source = source;
+        this.destination = destination;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+    }
+
+    public FlightInfo(int id, String flightName) {
+        this.id = id;
+        this.flightName = flightName;
     }
 
     public int getId() {
@@ -27,26 +41,26 @@ public class FlightInfo {
     }
 
     public String getFlightName() {
-        return FlightName;
+        return flightName;
     }
 
-    public int getNo_Of_Seats() {
-        return No_Of_Seats;
+    public int getNoOfSeats() {
+        return noOfSeats;
     }
 
     public String getSource() {
-        return Source;
+        return source;
     }
 
     public String getDestination() {
-        return Destination;
+        return destination;
     }
 
     public LocalDate getDepartureDate() {
-        return DepartureDate;
+        return departureDate;
     }
 
     public LocalTime getDepartureTime() {
-        return DepartureTime;
+        return departureTime;
     }
 }
