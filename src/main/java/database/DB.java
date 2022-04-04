@@ -49,6 +49,21 @@ public class DB {
         }
     }
 
+    public void insert_query_alt (String name, String code, Integer no_of_seats) {
+        try {
+            final String query = "INSERT into Airplane (name, code, no_of_seats) VALUES (?,?,?)";
+            PreparedStatement pstmt = connection.prepareStatement(query);
+
+            pstmt.setString(1, name);
+            pstmt.setString(2, code);
+            pstmt.setInt(3, no_of_seats);
+            pstmt.execute();
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ResultSet list(String table_name) {
         String query_statement = "SELECT * FROM " + table_name + ";";
         return select_query(query_statement);

@@ -32,4 +32,6 @@ public class FlightRepository extends DB {
         return ret;
     }
 
+    public void insert (String[] values) {super.insert(table_name, values);}
+
 }

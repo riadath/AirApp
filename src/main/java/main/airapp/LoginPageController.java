@@ -1,5 +1,6 @@
 package main.airapp;
 
+import database.DB;
 import datamodel.LoginInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +29,6 @@ public class LoginPageController extends Controller{
 
     @FXML
     public void switchToMenu(ActionEvent event) throws IOException {
-
         LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
         int validityCheck = loginInfo.isValid();
         if (validityCheck == 0) {

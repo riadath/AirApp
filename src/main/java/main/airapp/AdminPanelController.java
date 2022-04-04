@@ -4,11 +4,16 @@ import database.repository.AirplaneRepository;
 import database.repository.FlightRepository;
 import datamodel.FlightInfo;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,6 +25,12 @@ public class AdminPanelController extends Controller {
 
     @FXML
     private TableColumn<?, ?> adminFlightsDepartureTime;
+
+    @FXML
+    private TableColumn<?, ?> adminFlightsAirplaneCode;
+
+    @FXML
+    private TableColumn<?, ?> adminFlightsSeatAvailable;
 
     @FXML
     private TableColumn<?, ?> adminFlightsDestination;
@@ -36,6 +47,9 @@ public class AdminPanelController extends Controller {
     @FXML
     private TableView<FlightInfo> adminFlightsTable;
 
+    @FXML
+    private ListView<String> navbarList;
+
     //TODO: do some stuff noki
 
     ObservableList<FlightInfo> listFlights = FXCollections.observableArrayList(
@@ -45,9 +59,9 @@ public class AdminPanelController extends Controller {
     );
 
     ObservableList<FlightInfo> listAirplanes = FXCollections.observableArrayList(
-            new FlightInfo(1,"Etihad Airways" ),
-            new FlightInfo(2,"Emirates" ),
-            new FlightInfo(3,"GMG" )
+            new FlightInfo(1,"Etihad Airways", "B001", 21),
+            new FlightInfo(2,"Emirates", "B001", 21),
+            new FlightInfo(3,"GMG", "B001", 21)
     );
 
 
@@ -55,6 +69,7 @@ public class AdminPanelController extends Controller {
     public void loadFlights(){
         adminFlightsId.setCellValueFactory(new PropertyValueFactory<>("id"));
         adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("FlightName"));
+        adminFlightsSeatAvailable.setCellValueFactory(new PropertyValueFactory<>("noOfSeats"));
         adminFlightsSource.setCellValueFactory( new PropertyValueFactory<>("Source"));
         adminFlightsDestination.setCellValueFactory( new PropertyValueFactory<>("Destination"));
         adminFlightsDepartureDate.setCellValueFactory( new PropertyValueFactory<>("DepartureDate"));
@@ -65,16 +80,38 @@ public class AdminPanelController extends Controller {
         adminFlightsDepartureDate.setVisible(true);
         adminFlightsDepartureTime.setVisible(true);
 
+        adminFlightsAirplaneCode.setVisible(false);
+        adminFlightsSeatAvailable.setVisible(false);
+
         adminFlightsTable.setItems(new FlightRepository().flightAsObservableList());
     }
     public void loadAirplanes(){
+
+        String[] t = new AirplaneRepository().getCompanyAsStringArr();
+        for (String x:t) navbarList.getItems().add(x);
+//        navbarList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        navbarList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String manufacturer = navbarList.getSelectionModel().getSelectedItem();
+                if (manufacturer != null) {
+                    adminFlightsTable.setItems(new AirplaneRepository().airplaneAsObservable(manufacturer));
+                }
+            }
+        });
+
         adminFlightsId.setCellValueFactory(new PropertyValueFactory<>("id"));
         adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("FlightName"));
+        adminFlightsAirplaneCode.setCellValueFactory(new PropertyValueFactory<>("FlightCode"));
+        adminFlightsSeatAvailable.setCellValueFactory(new PropertyValueFactory<>("NoOfSeats"));
+
+        adminFlightsAirplaneCode.setVisible(true);
 
         adminFlightsSource.setVisible(false);
         adminFlightsDestination.setVisible(false);
         adminFlightsDepartureDate.setVisible(false);
         adminFlightsDepartureTime.setVisible(false);
+        adminFlightsSeatAvailable.setVisible(false);
 
         adminFlightsTable.setItems(new AirplaneRepository().airplaneAsObservable());
 
