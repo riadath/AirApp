@@ -1,5 +1,7 @@
 package main.airapp;
 
+import database.repository.AirplaneRepository;
+import database.repository.FlightRepository;
 import datamodel.FlightInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +65,7 @@ public class AdminPanelController extends Controller {
         adminFlightsDepartureDate.setVisible(true);
         adminFlightsDepartureTime.setVisible(true);
 
-        adminFlightsTable.setItems(( listFlights ));
+        adminFlightsTable.setItems(new FlightRepository().flightAsObservableList());
     }
     public void loadAirplanes(){
         adminFlightsId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -74,7 +76,7 @@ public class AdminPanelController extends Controller {
         adminFlightsDepartureDate.setVisible(false);
         adminFlightsDepartureTime.setVisible(false);
 
-        adminFlightsTable.setItems(( listAirplanes ));
+        adminFlightsTable.setItems(new AirplaneRepository().airplaneAsObservable());
 
     }
 
