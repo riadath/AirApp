@@ -21,6 +21,7 @@ public class LoginInfo {
         int ret = 0;
 
         if (username.contains(".")) {
+            System.out.println(username + " " + password);
             if (new AuthRepository().userAuth(username, password)) {
                 ret = 1;
             }
