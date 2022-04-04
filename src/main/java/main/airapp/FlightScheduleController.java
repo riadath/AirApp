@@ -56,12 +56,12 @@ public class FlightScheduleController extends Controller{
 
     public void initialize() {
         FlightID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        FlightName.setCellValueFactory( new PropertyValueFactory<>("FlightName"));
-        No_Of_Seats.setCellValueFactory( new PropertyValueFactory<>("No_Of_Seats"));
-        Source.setCellValueFactory( new PropertyValueFactory<>("Source"));
-        Destination.setCellValueFactory( new PropertyValueFactory<>("Destination"));
-        DepartureDate.setCellValueFactory( new PropertyValueFactory<>("DepartureDate"));
-        DepartureTime.setCellValueFactory( new PropertyValueFactory<>("DepartureTime"));
+        FlightName.setCellValueFactory( new PropertyValueFactory<>("flightName"));
+        No_Of_Seats.setCellValueFactory( new PropertyValueFactory<>("noOfSeats"));
+        Source.setCellValueFactory( new PropertyValueFactory<>("source"));
+        Destination.setCellValueFactory( new PropertyValueFactory<>("destination"));
+        DepartureDate.setCellValueFactory( new PropertyValueFactory<>("departureDate"));
+        DepartureTime.setCellValueFactory( new PropertyValueFactory<>("departureTime"));
 
         FlightScheduler.setItems(( list ));
     }
