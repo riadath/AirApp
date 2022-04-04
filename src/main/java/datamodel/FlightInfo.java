@@ -6,11 +6,23 @@ import java.time.LocalTime;
 public class FlightInfo {
     private int id;
     private String flightName;
+    private String flightCode;
     private int noOfSeats;
     private String source;
     private String destination;
     private LocalDate departureDate;
     private LocalTime departureTime;
+
+    public FlightInfo(int id, String flightName, String flightCode, int noOfSeats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
+        this.id = id;
+        this.flightName = flightName;
+        this.flightCode = flightCode;
+        this.noOfSeats = noOfSeats;
+        this.source = source;
+        this.destination = destination;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+    }
 
     public FlightInfo(int id, String flightName, int noOfSeats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
         this.id = id;
@@ -31,9 +43,11 @@ public class FlightInfo {
         this.departureTime = departureTime;
     }
 
-    public FlightInfo(int id, String flightName) {
+    public FlightInfo(int id, String flightName, String flightCode, int noOfSeats) {
         this.id = id;
         this.flightName = flightName;
+        this.flightCode = flightCode;
+        this.noOfSeats = noOfSeats;
     }
 
     public int getId() {
@@ -43,6 +57,8 @@ public class FlightInfo {
     public String getFlightName() {
         return flightName;
     }
+
+    public String getFlightCode() {return flightCode;}
 
     public int getNoOfSeats() {
         return noOfSeats;
