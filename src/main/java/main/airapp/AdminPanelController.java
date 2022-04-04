@@ -52,11 +52,11 @@ public class AdminPanelController extends Controller {
 
     public void loadFlights(){
         adminFlightsId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("FlightName"));
-        adminFlightsSource.setCellValueFactory( new PropertyValueFactory<>("Source"));
-        adminFlightsDestination.setCellValueFactory( new PropertyValueFactory<>("Destination"));
-        adminFlightsDepartureDate.setCellValueFactory( new PropertyValueFactory<>("DepartureDate"));
-        adminFlightsDepartureTime.setCellValueFactory( new PropertyValueFactory<>("DepartureTime"));
+        adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("flightName"));
+        adminFlightsSource.setCellValueFactory( new PropertyValueFactory<>("source"));
+        adminFlightsDestination.setCellValueFactory( new PropertyValueFactory<>("destination"));
+        adminFlightsDepartureDate.setCellValueFactory( new PropertyValueFactory<>("departureDate"));
+        adminFlightsDepartureTime.setCellValueFactory( new PropertyValueFactory<>("departureTime"));
 
         adminFlightsSource.setVisible(true);
         adminFlightsDestination.setVisible(true);
@@ -67,7 +67,7 @@ public class AdminPanelController extends Controller {
     }
     public void loadAirplanes(){
         adminFlightsId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("FlightName"));
+        adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("flightName"));
 
         adminFlightsSource.setVisible(false);
         adminFlightsDestination.setVisible(false);
