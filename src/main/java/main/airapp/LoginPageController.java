@@ -30,17 +30,12 @@ public class LoginPageController extends Controller{
     @FXML
     public void switchToMenu(ActionEvent event) throws IOException {
         LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
-        int validityCheck = loginInfo.isValid();
-        if (validityCheck == 0) {
+        boolean validityCheck = loginInfo.isValid();
+        if (!validityCheck) {
             wrongPassLabel.setText("Username or Password incorrect!");
             return;
         }
-        wrongPassLabel.setText("");
-        String fxmlPath = "admin-panel-page.fxml";
-        if(validityCheck == 1){
-            fxmlPath = "user-menu-page.fxml";
-        }
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin-panel-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
