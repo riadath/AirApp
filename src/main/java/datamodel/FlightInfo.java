@@ -79,4 +79,10 @@ public class FlightInfo {
     public LocalTime getDepartureTime() {
         return departureTime;
     }
+
+    @Override
+    public String toString(){
+        return "ID : " + id + " Flight Name : " + flightName +
+                " Flight Code : " + flightCode + " Date : " + departureDate.toString();
+    }
 }
