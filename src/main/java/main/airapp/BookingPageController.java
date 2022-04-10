@@ -1,10 +1,12 @@
 package main.airapp;
 
 import datamodel.FlightInfo;
+import datamodel.TicketInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.paint.Paint;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,15 +17,19 @@ public class BookingPageController extends Controller {
     @FXML
     private Button bookTicketButton;
     @FXML
+    private TextField countryTextFiled;
+    @FXML
     private DatePicker datePicker;
     @FXML
     private TextField destinationTextField;
+    @FXML
+    private TextField emailTexitField;
     @FXML
     private ComboBox<FlightInfo> flightDropDown;
     @FXML
     private TextField nameTextField;
     @FXML
-    private Label noFlightLabel;
+    private Label errorLabel;
     @FXML
     private TextField numberOfTickets;
     @FXML
@@ -34,7 +40,8 @@ public class BookingPageController extends Controller {
     private TextField sourceTextFiled;
     @FXML
     private ComboBox<String> ticketClassDropDown;
-
+    @FXML
+    private Button exitButton;
 
     public void initialize() {
         ObservableList<String> ticketClassList = FXCollections.observableArrayList("First", "Business", "Economy");
@@ -42,12 +49,12 @@ public class BookingPageController extends Controller {
     }
 
     public void searchFlights() {
-        noFlightLabel.setText("");
+        errorLabel.setText("");
         String source = sourceTextFiled.getText();
         String destination = destinationTextField.getText();
         LocalDate date = datePicker.getValue();
         if (source.isEmpty() || destination.isEmpty()) {
-            noFlightLabel.setText("Invalid Input");
+            errorLabel.setText("Invalid Input");
             return;
         }
 
@@ -55,25 +62,68 @@ public class BookingPageController extends Controller {
         ArrayList<FlightInfo> allFlights = new ArrayList<>(); //Add all the available flights to this array  list
         ObservableList<FlightInfo> availableFlights = FXCollections.observableArrayList();
         FlightInfo tf = new FlightInfo(12, "A", "B", 200,
-                "DH", "PH", LocalDate.of(2023, 1, 1), LocalTime.of(11, 30, 0));
+                "DH", "PH", LocalDate.of(2022, 1, 1), LocalTime.of(11, 30, 0));
         allFlights.add(tf);
+        //TODO: add stuff pls
 
 
         int availableCount = 0;
         for (FlightInfo flight : allFlights) {
             if (flight.getSource().equals(source) &&
                     flight.getDestination().equals(destination) &&
-                    flight.getDepartureDate().isAfter(date)) {
+                    flight.getDepartureDate().isEqual(date)) {
                 availableCount += 1;
                 availableFlights.add(flight);
             }
         }
-        if(availableCount > 0){
+        if (availableCount > 0) {
             flightDropDown.setItems(availableFlights);
         }
     }
 
-    public void makeTicket() {
 
+    public void makeTicket() {
+        String source = sourceTextFiled.getText();
+        String dest = destinationTextField.getText();
+        LocalDate date = datePicker.getValue();
+        FlightInfo flightInfo = flightDropDown.getSelectionModel().getSelectedItem();
+        String passengerNo = numberOfTickets.getText();
+        String ticketClass = ticketClassDropDown.getSelectionModel().getSelectedItem();
+        String name = nameTextField.getText();
+        String passportNo = passportNoTextField.getText();
+        String email = emailTexitField.getText();
+        String country = countryTextFiled.getText();
+        if (flightDropDown.getSelectionModel().isEmpty()) {
+            errorLabel.setText("No Flight is Selected");
+            return;
+        }
+        if (passengerNo.isEmpty()) {
+            errorLabel.setText("Select Number of Passengers");
+            return;
+        }
+        if(name.isEmpty()){
+            errorLabel.setText("Enter Name");
+            return;
+        }
+        if (passportNo.isEmpty()) {
+            errorLabel.setText("Enter Passport No");
+            return;
+        }
+        if (email.isEmpty()) {
+            errorLabel.setText("Enter Email");
+            return;
+        }
+        if (country.isEmpty()) {
+            errorLabel.setText("Enter Country of Residence");
+            return;
+        }
+        if(ticketClassDropDown.getSelectionModel().isEmpty()){
+            errorLabel.setText("Enter Ticket Class");
+            return;
+        }
+
+        TicketInfo ticketInfo = new TicketInfo(name,email,country,passportNo,flightInfo);
+
+        exitButton.fire();
     }
 }
