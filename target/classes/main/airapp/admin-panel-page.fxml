@@ -13,63 +13,57 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="515.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="main.airapp.AdminPanelController">
+<AnchorPane prefHeight="515.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.AdminPanelController">
     <children>
-        <GridPane prefHeight="515.0" prefWidth="937.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane prefHeight="515.0" prefWidth="937.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" percentWidth="21.0"
-                                   prefWidth="211.0"/>
-                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="414.0" minWidth="10.0" percentWidth="28.0"
-                                   prefWidth="414.0"/>
-                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="308.0" minWidth="10.0" percentWidth="28.0"
-                                   prefWidth="86.0"/>
-                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="377.0" minWidth="10.0" prefWidth="377.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" percentWidth="21.0" prefWidth="211.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="414.0" minWidth="10.0" percentWidth="28.0" prefWidth="414.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="308.0" minWidth="10.0" percentWidth="28.0" prefWidth="86.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="377.0" minWidth="10.0" prefWidth="377.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="20.0" prefHeight="100.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="20.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
                 <StackPane GridPane.columnIndex="3">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#switchToLoginMenu" text="Log Out" textFill="RED"/>
+                        <Button mnemonicParsing="false" onAction="#switchToLoginMenu" text="Log Out" textFill="RED" />
                     </children>
                 </StackPane>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="835.0" spacing="50.0" GridPane.columnSpan="3">
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="835.0" spacing="38.0" GridPane.columnSpan="3">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#loadAirplanes" text="Airplanes"/>
-                        <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights"/>
-                        <Button mnemonicParsing="false" onAction="#switchToMaintenancePage" text="Maintenance"/>
-                        <Button mnemonicParsing="false" onAction="#switchToBookingPage" text="Booking"/>
-                        <Button mnemonicParsing="false" text="Pilot"/>
+                        <Button mnemonicParsing="false" onAction="#loadAirplanes" prefHeight="23.0" prefWidth="66.0" text="Airplanes" />
+                        <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights" />
+                        <Button mnemonicParsing="false" onAction="#switchToMaintenancePage" text="Maintenance" />
+                        <Button mnemonicParsing="false" onAction="#switchToBookingPage" text="Booking" />
+                        <Button mnemonicParsing="false" text="Pilot" />
+                  <Button fx:id="checkInButton" mnemonicParsing="false" onAction="#switchToCheckinPage" text="Check In" />
                     </children>
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <padding>
-                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </padding>
                 </HBox>
-                <TableView fx:id="adminFlightsTable" GridPane.columnIndex="1" GridPane.columnSpan="3"
-                           GridPane.rowIndex="1" GridPane.rowSpan="2">
+                <TableView fx:id="adminFlightsTable" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columns>
-                        <TableColumn fx:id="adminFlightsId" prefWidth="60.0" text="ID"/>
-                        <TableColumn fx:id="adminFlightsName" prefWidth="152.0" text="Airplane Name"/>
-                        <TableColumn fx:id="adminFlightsAirplaneCode" prefWidth="75.0" text="Airplane Code"/>
-                        <TableColumn fx:id="adminFlightsSeatAvailable" prefWidth="75.0" text="Seats Available"/>
-                        <TableColumn fx:id="adminFlightsSource" prefWidth="114.0" text="Source"/>
-                        <TableColumn fx:id="adminFlightsDestination" prefWidth="114.0" text="Destination"/>
-                        <TableColumn fx:id="adminFlightsDepartureDate" prefWidth="170.0" text="Departure Date"/>
-                        <TableColumn fx:id="adminFlightsDepartureTime" maxWidth="129.0" prefWidth="129.0"
-                                     text="Departure Time"/>
+                        <TableColumn fx:id="adminFlightsId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="adminFlightsName" prefWidth="152.0" text="Airplane Name" />
+                        <TableColumn fx:id="adminFlightsAirplaneCode" prefWidth="75.0" text="Airplane Code" />
+                        <TableColumn fx:id="adminFlightsSeatAvailable" prefWidth="75.0" text="Seats Available" />
+                        <TableColumn fx:id="adminFlightsSource" prefWidth="114.0" text="Source" />
+                        <TableColumn fx:id="adminFlightsDestination" prefWidth="114.0" text="Destination" />
+                        <TableColumn fx:id="adminFlightsDepartureDate" prefWidth="170.0" text="Departure Date" />
+                        <TableColumn fx:id="adminFlightsDepartureTime" maxWidth="129.0" prefWidth="129.0" text="Departure Time" />
                     </columns>
                 </TableView>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <children>
-                        <ListView fx:id="navbarList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
+                        <ListView fx:id="navbarList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                     </children>
                 </VBox>
             </children>

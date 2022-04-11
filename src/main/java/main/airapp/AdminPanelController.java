@@ -115,4 +115,12 @@ public class AdminPanelController extends Controller {
         stage.show();
     }
 
+    public void switchToCheckinPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("checkin-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
