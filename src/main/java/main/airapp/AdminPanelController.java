@@ -71,10 +71,12 @@ public class AdminPanelController extends Controller {
     public void loadAirplanes() {
 
         String[] temp_str = new AirplaneRepository().getCompanyAsStringArr();
+        navbarList.getItems().clear();
         for (String x : temp_str) navbarList.getItems().add(x);
         navbarList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                System.out.println(navbarList.getItems());
                 String manufacturer = navbarList.getSelectionModel().getSelectedItem();
                 if (manufacturer != null) {
                     adminFlightsTable.setItems(new AirplaneRepository().airplaneAsObservable(manufacturer));
