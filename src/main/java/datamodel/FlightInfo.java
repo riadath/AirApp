@@ -1,5 +1,7 @@
 package datamodel;
 
+import javafx.beans.value.ObservableValue;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,10 +10,15 @@ public class FlightInfo {
     private String flightName;
     private String flightCode;
     private int noOfSeats;
+
+    private AirplaneInfo airplane;
+
     private String source;
     private String destination;
     private LocalDate departureDate;
     private LocalTime departureTime;
+
+    public FlightInfo() {}
 
     public FlightInfo(int id, String flightName, String flightCode, int noOfSeats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
         this.id = id;
@@ -28,6 +35,9 @@ public class FlightInfo {
         this.id = id;
         this.flightName = flightName;
         this.noOfSeats = noOfSeats;
+
+        this.airplane = new AirplaneInfo(-1, flightName, "21", noOfSeats);
+
         this.source = source;
         this.destination = destination;
         this.departureDate = departureDate;
@@ -50,39 +60,45 @@ public class FlightInfo {
         this.noOfSeats = noOfSeats;
     }
 
-    public int getId() {
-        return id;
+    public FlightInfo(int id, AirplaneInfo airplane, String source, String destination, LocalDate date, LocalTime time) {
+        this.id = id;
+        this.airplane = airplane;
+        this.source = source;
+        this.destination = destination;
+        this.departureDate = date;
+        this.departureTime = time;
     }
 
-    public String getFlightName() {
-        return flightName;
-    }
+    public int getId() { return id; }
 
-    public String getFlightCode() {return flightCode;}
+    public AirplaneInfo getAirplane() { return airplane; }
 
-    public int getNoOfSeats() {
-        return noOfSeats;
-    }
+    public String getFlightName() { return flightName; }
 
-    public String getSource() {
-        return source;
-    }
+    public String getFlightCode() { return flightCode; }
 
-    public String getDestination() {
-        return destination;
-    }
+    public int getNoOfSeats() { return noOfSeats; }
 
-    public LocalDate getDepartureDate() {
-        return departureDate;
-    }
+    public String getSource() { return source; }
 
-    public LocalTime getDepartureTime() {
-        return departureTime;
-    }
+    public String getDestination() { return destination; }
+
+    public LocalDate getDepartureDate() { return departureDate; }
+
+    public LocalTime getDepartureTime() { return departureTime; }
 
     @Override
-    public String toString(){
-        return "ID : " + id + " Flight Name : " + flightName +
-                " Flight Code : " + flightCode + " Date : " + departureDate.toString();
+    public String toString() {
+        return "FlightInfo{" +
+                "id=" + id +
+                ", flightName='" + flightName + '\'' +
+                ", flightCode='" + flightCode + '\'' +
+                ", noOfSeats=" + noOfSeats +
+                ", airplane=" + airplane +
+                ", source='" + source + '\'' +
+                ", destination='" + destination + '\'' +
+                ", departureDate=" + departureDate +
+                ", departureTime=" + departureTime +
+                '}';
     }
 }
