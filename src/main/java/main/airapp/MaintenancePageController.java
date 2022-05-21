@@ -1,5 +1,7 @@
 package main.airapp;
 
-public class MaintenancePageController extends Controller{
+import main.airapp.Controller;
+
+public class MaintenancePageController extends Controller {
 
 }

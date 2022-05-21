@@ -11,11 +11,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.*;
 import javafx.stage.*;
+import main.airapp.Controller;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginPageController extends Controller{
+public class LoginPageController extends Controller {
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -40,8 +41,6 @@ public class LoginPageController extends Controller{
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-
     }
 
 

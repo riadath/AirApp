@@ -8,10 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
+import main.airapp.Controller;
 
 import java.util.ArrayList;
 
-public class CheckinPageController extends Controller{
+public class CheckinPageController extends Controller {
     @FXML
     private TextField luggageTextField;
     @FXML
