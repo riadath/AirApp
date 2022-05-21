@@ -46,7 +46,7 @@ public class CheckinPageController extends Controller {
         ArrayList<TicketInfo>allTickets = new ArrayList<>();
         TicketInfo ticket = new TicketInfo("akib",
                 "akib@gmail","BD","1234",
-                new FlightInfo(12,"b","c",12));
+                new FlightInfo(12,"b","c",12),69);
         allTickets.add(ticket);
 
         //TODO: get all the tickets from db and do the stuff
