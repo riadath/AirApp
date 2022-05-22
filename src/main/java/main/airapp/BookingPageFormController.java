@@ -125,6 +125,8 @@ public class BookingPageFormController extends Controller {
         for(boolean i : flightInfo.getSeatAvailability()){
             if(!i){
                 seatNumber = cnt + 1;
+//                flightInfo.getSeatAvailability()[cnt] = true;
+                //TODO : Change the seat availability on the database
                 break;
             }
             cnt++;
