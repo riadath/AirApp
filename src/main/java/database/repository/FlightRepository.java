@@ -20,8 +20,6 @@ public class FlightRepository extends DB {
         super();
     }
 
-
-
     public ObservableList<FlightInfo> flightAsObservableList() {
         final String query = "select Flight.id as flightId, Airplane.id as airplaneId, Airplane.name as airplaneName,"
                 + " Airplane.code as airplaneCode, Airplane.no_of_seats as airplaneSeat,"
@@ -30,14 +28,17 @@ public class FlightRepository extends DB {
         return asObserbavle.flightToObservable(select_query(query));
     }
 
-    public ObservableList<FlightInfo> filterFlightAsObservableList(String airplaneMan, LocalDate from, LocalDate to) {
-        final String query = "select Flight.id as flightId, Airplane.id as airplaneId, Airplane.name as airplaneName," +
+    public ObservableList<FlightInfo> filterFlightAsObservableList(LocalDate from, LocalDate to, String source, String destination, String airplaneName) {
+        final String query =
+                "select Flight.id as flightId, Flight.source, Flight.destination, Flight.departure from Flight" +
+                " Airplane.id as airplaneId, Airplane.name as airplaneName," +
                 " Airplane.code as airplaneCode, Airplane.no_of_seats as airplaneSeat," +
-                " Flight.source, Flight.destination, Flight.departure from Flight" +
                 " left join Airplane on Airplane.code = Flight.airplane" +
-                " where departure >= " + from.toEpochSecond(LocalTime.NOON, ZoneOffset.MIN) +
-                " and departure <= " + to.toEpochSecond(LocalTime.NOON, ZoneOffset.MIN) +
-                (airplaneMan == null ? "" : " and Airplane.name=\"" + airplaneMan + "\"");
+                " where departure >= " + from.toEpochSecond(LocalTime.MIN, ZoneOffset.MIN) +
+                " and departure <= " + to.toEpochSecond(LocalTime.MIN, ZoneOffset.MIN) +
+                (airplaneName == null ? "" : " and Airplane.name=\"" + airplaneName + "\"") +
+                (source == null ? "" : " and Flight.source=\"" + source + "\"") +
+                (destination == null ? "" : " and Flight.destination=\"" + destination + "\"");
         return asObserbavle.flightToObservable(select_query(query));
     }
 

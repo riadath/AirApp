@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -67,11 +68,28 @@ public class FlightTableController {
             to = LocalDate.now();
         }
         warningLabel.setText(String.valueOf(warningText));
-        flightTable.setItems(new FlightRepository().filterFlightAsObservableList(airplaneCode, from, to));
+        flightTable.setItems(new FlightRepository().filterFlightAsObservableList(from, to, null, null, airplaneCode));
     }
 
+    // fills the combobox that holds the list of airplane names scheduled flights
     private void fillCombo () {
         airplaneBox.setItems(new AirplaneRepository().airplaneAsObservable());
+
+        // sets the thing to show on teh display box
+        airplaneBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(AirplaneInfo airplaneInfo) {
+                if(airplaneInfo == null) return "<Airplane Filter>";
+                return airplaneInfo.getName();
+            }
+
+            @Override
+            public AirplaneInfo fromString(String s) {
+                return null;
+            }
+        });
+
+        // sets the things to show on the list
         airplaneBox.setCellFactory(new Callback<>() {
             @Override
             public ListCell<AirplaneInfo> call(ListView<AirplaneInfo> airplaneInfoListView) {

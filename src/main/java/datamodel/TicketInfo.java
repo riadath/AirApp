@@ -1,12 +1,10 @@
 package datamodel;
 
-import java.sql.ResultSet;
-
 public class TicketInfo extends UserInfo {
 
     FlightInfo flightInfo;
     private boolean ticketState;
-    private int seatNumber;
+    private final int seatNumber;
 
     public TicketInfo(String name, String email, String countryOfResidence,
                       String passportNo, FlightInfo flightInfo,int seatNumber) {

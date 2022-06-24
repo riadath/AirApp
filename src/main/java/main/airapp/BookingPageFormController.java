@@ -1,15 +1,19 @@
 package main.airapp;
 
+import database.repository.FlightRepository;
 import datamodel.FlightInfo;
 import datamodel.TicketInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 
 public class BookingPageFormController extends Controller {
@@ -57,28 +61,52 @@ public class BookingPageFormController extends Controller {
             return;
         }
 
-        // TODO: 4/9/2022 NOKI DO STUFF
-        ArrayList<FlightInfo> allFlights = new ArrayList<>(); //Add all the available flights to this array  list
-        ObservableList<FlightInfo> availableFlights = FXCollections.observableArrayList();
-        FlightInfo tf = new FlightInfo(12, "A", "B", 200,
-                "DH", "PH", LocalDate.of(2022, 1, 1), LocalTime.of(11, 30, 0));
-        allFlights.add(tf);
-        //TODO: add stuff pls
+        if (date == null || date.isBefore(LocalDate.now())) {
+            errorLabel.setText("Invalid Date");
+            return;
+        }
 
+        // checks for flights in 48hr range from selected date.
+        ObservableList<FlightInfo> availableFlights =  new FlightRepository().filterFlightAsObservableList(
+                date.minusDays(1), date.plusDays(1), source, destination, null
+        );
+        errorLabel.setText(availableFlights.size() + " Flight" + (availableFlights.size() == 1 ? "" : "s") + " Found");
+        flightDropDown.setItems(availableFlights);
 
-        int availableCount = 0;
-        for (FlightInfo flight : allFlights) {
-            if (flight.getSource().equals(source) &&
-                    flight.getDestination().equals(destination) &&
-                    flight.getDepartureDate().isEqual(date) &&
-                    flight.getAvailableSeatNo() > 0) {
-                availableCount += 1;
-                availableFlights.add(flight);
+        // to show value in the dropdown bar
+        flightDropDown.setConverter(new StringConverter<FlightInfo>() {
+            @Override
+            public String toString(FlightInfo flightInfo) {
+                if (flightInfo == null) return "";
+                return flightInfo.getId() + " " + flightInfo.getSource() + " - " + flightInfo.getDestination();
             }
-        }
-        if (availableCount > 0) {
-            flightDropDown.setItems(availableFlights);
-        }
+
+            @Override
+            public FlightInfo fromString(String s) {
+                return null;
+            }
+        });
+
+        // to show values in teh dropdown MENU. Copied from the documentation. this works. don't touch it.
+        flightDropDown.setCellFactory(new Callback<ListView<FlightInfo>, ListCell<FlightInfo>>() {
+            @Override
+            public ListCell<FlightInfo> call(ListView<FlightInfo> flightInfoListView) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem (FlightInfo item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setGraphic(null);
+                        } else {
+                            setText(item.getId() + " " + item.getSource() + " - " + item.getDestination());
+                        }
+                    }
+                };
+            }
+        });
+
+        // TODO: available flight er length >0 hoile error label er color green maybe?
+
     }
 
 

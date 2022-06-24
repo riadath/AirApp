@@ -5,17 +5,16 @@ import datamodel.TicketInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BookingPageController extends Controller{
@@ -27,8 +26,8 @@ public class BookingPageController extends Controller{
 
     public void getBookedFlights(){
         //TODO : add the flight names to flightList and all the tickets to the list
-        ArrayList<FlightInfo> flightInfoList = new ArrayList<>(); //add the names here or sth idk
-        ArrayList<TicketInfo> allTickets = new ArrayList<>(); //get all the tickets
+        List<FlightInfo> flightInfoList = new ArrayList<>(); //add the names here or sth idk
+        List<TicketInfo> allTickets = new ArrayList<>(); //get all the tickets
         ObservableList<Integer>flightIDList = FXCollections.observableArrayList();
         ObservableList<String>bookedTicketList = FXCollections.observableArrayList();
 
@@ -55,18 +54,15 @@ public class BookingPageController extends Controller{
         }
         flightList.setItems(flightIDList);
         
-        flightList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                bookedTicketList.clear();
-                Integer flightId = flightList.getSelectionModel().getSelectedItem();
-                for(TicketInfo ticket : allTickets){
-                    if(ticket.getFlightInfo().getId() == flightId){
-                        bookedTicketList.add(ticket.getName() + " " + ticket.getSeatNumber());
-                    }
+        flightList.setOnMouseClicked(mouseEvent -> {
+            bookedTicketList.clear();
+            Integer flightId = flightList.getSelectionModel().getSelectedItem();
+            for(TicketInfo ticket : allTickets){
+                if(ticket.getFlightInfo().getId() == flightId){
+                    bookedTicketList.add(ticket.getName() + " " + ticket.getSeatNumber());
                 }
-                bookedSeatList.setItems(bookedTicketList);
             }
+            bookedSeatList.setItems(bookedTicketList);
         });
     }
 
