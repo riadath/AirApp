@@ -1,17 +1,17 @@
 package datamodel;
 
-import java.sql.ResultSet;
-
 public class TicketInfo extends UserInfo {
 
     FlightInfo flightInfo;
     private boolean ticketState;
+    private final int seatNumber;
 
     public TicketInfo(String name, String email, String countryOfResidence,
-                      String passportNo, FlightInfo flightInfo) {
+                      String passportNo, FlightInfo flightInfo,int seatNumber) {
         super(name, email, countryOfResidence, passportNo);
         this.flightInfo = flightInfo;
         this.ticketState = false;
+        this.seatNumber = seatNumber;
     }
 
     public FlightInfo getFlightInfo() {
@@ -29,4 +29,9 @@ public class TicketInfo extends UserInfo {
     public void setTicketState(boolean ticketState) {
         this.ticketState = ticketState;
     }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
 }

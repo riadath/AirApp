@@ -4,127 +4,75 @@ import datamodel.FlightInfo;
 import datamodel.TicketInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.paint.Paint;
-import main.airapp.Controller;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class BookingPageController extends Controller {
-    @FXML
-    private Button bookTicketButton;
-    @FXML
-    private TextField countryTextFiled;
-    @FXML
-    private DatePicker datePicker;
-    @FXML
-    private TextField destinationTextField;
-    @FXML
-    private TextField emailTexitField;
-    @FXML
-    private ComboBox<FlightInfo> flightDropDown;
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private Label errorLabel;
-    @FXML
-    private TextField numberOfTickets;
-    @FXML
-    private TextField passportNoTextField;
-    @FXML
-    private Button searchFlightButton;
-    @FXML
-    private TextField sourceTextFiled;
-    @FXML
-    private ComboBox<String> ticketClassDropDown;
-    @FXML
-    private Button exitButton;
+public class BookingPageController extends Controller{
 
-    public void initialize() {
-        ObservableList<String> ticketClassList = FXCollections.observableArrayList("First", "Business", "Economy");
-        ticketClassDropDown.setItems(ticketClassList);
-    }
+    @FXML
+    private ListView<String> bookedSeatList;
+    @FXML
+    private ListView<Integer> flightList;
 
-    public void searchFlights() {
-        errorLabel.setText("");
-        String source = sourceTextFiled.getText();
-        String destination = destinationTextField.getText();
-        LocalDate date = datePicker.getValue();
-        if (source.isEmpty() || destination.isEmpty()) {
-            errorLabel.setText("Invalid Input");
-            return;
+    public void getBookedFlights(){
+        //TODO : add the flight names to flightList and all the tickets to the list
+        List<FlightInfo> flightInfoList = new ArrayList<>(); //add the names here or sth idk
+        List<TicketInfo> allTickets = new ArrayList<>(); //get all the tickets
+        ObservableList<Integer>flightIDList = FXCollections.observableArrayList();
+        ObservableList<String>bookedTicketList = FXCollections.observableArrayList();
+
+        //TODO: delete later
+        FlightInfo f1 = new FlightInfo(9,"Zerkon",null,7,null,
+                null,null,null);
+        FlightInfo f2 = new FlightInfo(89,"Yeonna",null,67,null,
+                null,null,null);
+        flightInfoList.add(f1);
+        flightInfoList.add(f2);
+
+        TicketInfo t1 = new TicketInfo("Druid","u",null,null,f1,1212);
+        TicketInfo t2 = new TicketInfo("Ezekiel","v",null,null,f2,8892);
+        TicketInfo t3 = new TicketInfo("Hll","w",null,null,f2,54);
+
+        allTickets.add(t1);
+        allTickets.add(t2);
+        allTickets.add(t3);
+
+        //delete later
+
+        for(FlightInfo t_flight : flightInfoList){
+            flightIDList.add(t_flight.getId());
         }
-
-        // TODO: 4/9/2022 NOKI DO STUFF
-        ArrayList<FlightInfo> allFlights = new ArrayList<>(); //Add all the available flights to this array  list
-        ObservableList<FlightInfo> availableFlights = FXCollections.observableArrayList();
-        FlightInfo tf = new FlightInfo(12, "A", "B", 200,
-                "DH", "PH", LocalDate.of(2022, 1, 1), LocalTime.of(11, 30, 0));
-        allFlights.add(tf);
-        //TODO: add stuff pls
-
-
-        int availableCount = 0;
-        for (FlightInfo flight : allFlights) {
-            if (flight.getSource().equals(source) &&
-                    flight.getDestination().equals(destination) &&
-                    flight.getDepartureDate().isEqual(date)) {
-                availableCount += 1;
-                availableFlights.add(flight);
+        flightList.setItems(flightIDList);
+        
+        flightList.setOnMouseClicked(mouseEvent -> {
+            bookedTicketList.clear();
+            Integer flightId = flightList.getSelectionModel().getSelectedItem();
+            for(TicketInfo ticket : allTickets){
+                if(ticket.getFlightInfo().getId() == flightId){
+                    bookedTicketList.add(ticket.getName() + " " + ticket.getSeatNumber());
+                }
             }
-        }
-        if (availableCount > 0) {
-            flightDropDown.setItems(availableFlights);
-        }
+            bookedSeatList.setItems(bookedTicketList);
+        });
+    }
+
+    public void switchToBookingPageForm(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("booking-page-form.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
-    public void makeTicket() {
-        String source = sourceTextFiled.getText();
-        String dest = destinationTextField.getText();
-        LocalDate date = datePicker.getValue();
-        FlightInfo flightInfo = flightDropDown.getSelectionModel().getSelectedItem();
-        String passengerNo = numberOfTickets.getText();
-        String ticketClass = ticketClassDropDown.getSelectionModel().getSelectedItem();
-        String name = nameTextField.getText();
-        String passportNo = passportNoTextField.getText();
-        String email = emailTexitField.getText();
-        String country = countryTextFiled.getText();
-        if (flightDropDown.getSelectionModel().isEmpty()) {
-            errorLabel.setText("No Flight is Selected");
-            return;
-        }
-        if (passengerNo.isEmpty()) {
-            errorLabel.setText("Select Number of Passengers");
-            return;
-        }
-        if(name.isEmpty()){
-            errorLabel.setText("Enter Name");
-            return;
-        }
-        if (passportNo.isEmpty()) {
-            errorLabel.setText("Enter Passport No");
-            return;
-        }
-        if (email.isEmpty()) {
-            errorLabel.setText("Enter Email");
-            return;
-        }
-        if (country.isEmpty()) {
-            errorLabel.setText("Enter Country of Residence");
-            return;
-        }
-        if(ticketClassDropDown.getSelectionModel().isEmpty()){
-            errorLabel.setText("Enter Ticket Class");
-            return;
-        }
-
-        TicketInfo ticketInfo = new TicketInfo(name,email,country,passportNo,flightInfo);
-
-        exitButton.fire();
-    }
 }

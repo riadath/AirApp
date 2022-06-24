@@ -21,7 +21,6 @@ public class AsObserbavle {
             while (rs.next()) {
 
                 ZonedDateTime time = Instant.ofEpochMilli(rs.getInt("departure") * 1000L).atZone(ZoneId.systemDefault());
-
                 ret.add(new FlightInfo(
                         rs.getInt("flightId"),
                         new AirplaneInfo(
@@ -46,12 +45,17 @@ public class AsObserbavle {
         ObservableList<AirplaneInfo> ret = FXCollections.observableArrayList();
         try {
             while (rs.next()) {
-                ret.add(new AirplaneInfo(
+                AirplaneInfo airplane = new AirplaneInfo(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("code"),
                         rs.getInt("no_of_seats")
-                ));
+                );
+//                System.out.println(airplane + "p\n\n");
+                if (!ret.contains(airplane)){
+//                    System.out.println("here");
+                    ret.add(airplane);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
