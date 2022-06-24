@@ -30,10 +30,11 @@ public class FlightRepository extends DB {
 
     public ObservableList<FlightInfo> filterFlightAsObservableList(LocalDate from, LocalDate to, String source, String destination, String airplaneName) {
         final String query =
-                "select Flight.id as flightId, Flight.source, Flight.destination, Flight.departure from Flight" +
+                "select Flight.id as flightId, Flight.source, Flight.destination, Flight.departure" +
                 " Airplane.id as airplaneId, Airplane.name as airplaneName," +
                 " Airplane.code as airplaneCode, Airplane.no_of_seats as airplaneSeat," +
                 " left join Airplane on Airplane.code = Flight.airplane" +
+                " from Flight" +
                 " where departure >= " + from.toEpochSecond(LocalTime.MIN, ZoneOffset.MIN) +
                 " and departure <= " + to.toEpochSecond(LocalTime.MIN, ZoneOffset.MIN) +
                 (airplaneName == null ? "" : " and Airplane.name=\"" + airplaneName + "\"") +
