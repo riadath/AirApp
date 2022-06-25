@@ -57,7 +57,7 @@ public class FlightTableController {
     void filterFlight(ActionEvent event) {
         final String airplaneCode = (airplaneBox.getValue()==null ? null : airplaneBox.getValue().getName());
         LocalDate from = dateFrom.getValue();
-        StringBuilder warningText = new StringBuilder("");
+        StringBuilder warningText = new StringBuilder();
         if (from == null) {
             warningText.append("Starting Date not found\n");
             from = LocalDate.parse("1970-01-01");

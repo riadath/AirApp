@@ -2,19 +2,15 @@ package database.repository;
 
 import database.DB;
 import database.service.AsObserbavle;
-import datamodel.AirplaneInfo;
 import datamodel.FlightInfo;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.*;
 
 public class FlightRepository extends DB {
 
     static String table_name = "Flight";
-    private AsObserbavle asObserbavle = new AsObserbavle();
+    private final AsObserbavle asObserbavle = new AsObserbavle();
 
     public FlightRepository() {
         super();
@@ -30,11 +26,11 @@ public class FlightRepository extends DB {
 
     public ObservableList<FlightInfo> filterFlightAsObservableList(LocalDate from, LocalDate to, String source, String destination, String airplaneName) {
         final String query =
-                "select Flight.id as flightId, Flight.source, Flight.destination, Flight.departure" +
+                "select Flight.id as flightId, Flight.source, Flight.destination, Flight.departure," +
                 " Airplane.id as airplaneId, Airplane.name as airplaneName," +
-                " Airplane.code as airplaneCode, Airplane.no_of_seats as airplaneSeat," +
+                " Airplane.code as airplaneCode, Airplane.no_of_seats as airplaneSeat" +
+                        " from Flight" +
                 " left join Airplane on Airplane.code = Flight.airplane" +
-                " from Flight" +
                 " where departure >= " + from.toEpochSecond(LocalTime.MIN, ZoneOffset.MIN) +
                 " and departure <= " + to.toEpochSecond(LocalTime.MIN, ZoneOffset.MIN) +
                 (airplaneName == null ? "" : " and Airplane.name=\"" + airplaneName + "\"") +
