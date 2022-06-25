@@ -11,10 +11,6 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-
-import java.time.ZoneOffset;
-import java.util.ArrayList;
 
 public class BookingPageFormController extends Controller {
     @FXML
@@ -74,7 +70,7 @@ public class BookingPageFormController extends Controller {
         flightDropDown.setItems(availableFlights);
 
         // to show value in the dropdown bar
-        flightDropDown.setConverter(new StringConverter<FlightInfo>() {
+        flightDropDown.setConverter(new StringConverter<>() {
             @Override
             public String toString(FlightInfo flightInfo) {
                 if (flightInfo == null) return "";
@@ -88,12 +84,12 @@ public class BookingPageFormController extends Controller {
         });
 
         // to show values in teh dropdown MENU. Copied from the documentation. this works. don't touch it.
-        flightDropDown.setCellFactory(new Callback<ListView<FlightInfo>, ListCell<FlightInfo>>() {
+        flightDropDown.setCellFactory(new Callback<>() {
             @Override
             public ListCell<FlightInfo> call(ListView<FlightInfo> flightInfoListView) {
                 return new ListCell<>() {
                     @Override
-                    protected void updateItem (FlightInfo item, boolean empty) {
+                    protected void updateItem(FlightInfo item, boolean empty) {
                         super.updateItem(item, empty);
                         if (item == null || empty) {
                             setGraphic(null);
