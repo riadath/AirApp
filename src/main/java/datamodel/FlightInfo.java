@@ -1,5 +1,8 @@
 package datamodel;
 
+import database.repository.FlightRepository;
+import database.repository.TicketRepository;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -52,13 +55,23 @@ public class FlightInfo {
         this.availableSeatNo = noOfSeats;
     }
 
-    public FlightInfo(int id, AirplaneInfo airplane, String source, String destination, LocalDate date, LocalTime time) {
+    public FlightInfo(int id, AirplaneInfo airplane, String source, String destination, LocalDate date, LocalTime time, int remainingSeats) {
         this.id = id;
         this.airplane = airplane;
         this.source = source;
         this.destination = destination;
         this.departureDate = date;
         this.departureTime = time;
+        this.availableSeatNo= remainingSeats;
+    }
+
+    public FlightInfo(int id, String source, String destination, LocalDate date, LocalTime time, int remainingSeats) {
+        this.id = id;
+        this.source = source;
+        this.destination = destination;
+        this.departureDate = date;
+        this.departureTime = time;
+        this.availableSeatNo= remainingSeats;
     }
 
     public int getId() {
@@ -70,7 +83,7 @@ public class FlightInfo {
     }
 
     public String getFlightName() {
-        return flightName;
+        return id + " "  + source + " - " + destination;
     }
 
     public String getFlightCode() {
@@ -97,8 +110,13 @@ public class FlightInfo {
         return departureTime;
     }
 
-    public Boolean[] getSeatAvailability() {
-        return seatAvailability;
+    public int getFirstSeatAvailable () {
+        return (this.availableSeatNo > 0 ? airplane.getNumber_of_seats() - this.availableSeatNo + 1 : -1);
+    }
+
+    public void confirmTicket () {
+        availableSeatNo = availableSeatNo - 1;
+        new FlightRepository().updateNoOfSeats(this.id, availableSeatNo);
     }
 
     public void setSeatAvailability(Boolean[] seatAvailability) {

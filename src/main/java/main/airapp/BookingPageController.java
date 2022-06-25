@@ -1,5 +1,7 @@
 package main.airapp;
 
+import database.repository.FlightRepository;
+import database.repository.TicketRepository;
 import datamodel.FlightInfo;
 import datamodel.TicketInfo;
 import javafx.collections.FXCollections;
@@ -9,64 +11,82 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
 public class BookingPageController extends Controller{
 
     @FXML
-    private ListView<String> bookedSeatList;
+    private ListView<TicketInfo> bookedSeatList;
     @FXML
-    private ListView<Integer> flightList;
+    private ListView<FlightInfo> flightList;
 
     public void getBookedFlights(){
-        //TODO : add the flight names to flightList and all the tickets to the list
-        List<FlightInfo> flightInfoList = new ArrayList<>(); //add the names here or sth idk
-        List<TicketInfo> allTickets = new ArrayList<>(); //get all the tickets
-        ObservableList<Integer>flightIDList = FXCollections.observableArrayList();
-        ObservableList<String>bookedTicketList = FXCollections.observableArrayList();
 
-        //TODO: delete later
-        FlightInfo f1 = new FlightInfo(9,"Zerkon",null,7,null,
-                null,null,null);
-        FlightInfo f2 = new FlightInfo(89,"Yeonna",null,67,null,
-                null,null,null);
-        flightInfoList.add(f1);
-        flightInfoList.add(f2);
+        // TODO : ADD LABELS ON TOP OF TWO LISTVIEWS. LEFT TOP E "FLIGHTS DUE",  MID TOP E "TICKETS BOOKED"
 
-        TicketInfo t1 = new TicketInfo("Druid","u",null,null,f1,1212);
-        TicketInfo t2 = new TicketInfo("Ezekiel","v",null,null,f2,8892);
-        TicketInfo t3 = new TicketInfo("Hll","w",null,null,f2,54);
+        ObservableList<FlightInfo> flightFetched = new FlightRepository().filterFlightAsObservableList(LocalDate.now(), LocalDate.MAX, null, null, null);
 
-        allTickets.add(t1);
-        allTickets.add(t2);
-        allTickets.add(t3);
-
-        //delete later
-
-        for(FlightInfo t_flight : flightInfoList){
-            flightIDList.add(t_flight.getId());
+        TicketRepository ticketRepository = new TicketRepository();
+        HashMap<Integer, ObservableList<TicketInfo>> ticketFetched = new HashMap<>();
+        for (FlightInfo i : flightFetched) {
+            ticketFetched.put(i.getId(), ticketRepository.ticketAsObservableList(i.getId()));
         }
-        flightList.setItems(flightIDList);
-        
+
+        flightList.setItems(flightFetched);
+
+
         flightList.setOnMouseClicked(mouseEvent -> {
-            bookedTicketList.clear();
-            Integer flightId = flightList.getSelectionModel().getSelectedItem();
-            for(TicketInfo ticket : allTickets){
-                if(ticket.getFlightInfo().getId() == flightId){
-                    bookedTicketList.add(ticket.getName() + " " + ticket.getSeatNumber());
-                }
+            bookedSeatList.setItems(ticketFetched.get(flightList.getSelectionModel().getSelectedItem().getId()));
+        });
+
+        flightList.setCellFactory(new Callback<>() {
+            @Override
+            public ListCell<FlightInfo> call(ListView<FlightInfo> flightInfoListView) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(FlightInfo item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setGraphic(null);
+                        } else {
+                            setText(item.getFlightName());
+                        }
+                    }
+                };
             }
-            bookedSeatList.setItems(bookedTicketList);
+        });
+        bookedSeatList.setCellFactory(new Callback<>() {
+            @Override
+            public ListCell<TicketInfo> call(ListView<TicketInfo> flightInfoListView) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(TicketInfo item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setGraphic(null);
+                        } else {
+                            setText(item.getPassengerDetails());
+                        }
+                    }
+                };
+            }
         });
     }
 
     public void switchToBookingPageForm(ActionEvent event) throws IOException {
+
+        // TODO : CHECK IF THIS CAN BE DONE ON A NEW WINDOW. AGER WINDOW REPLACE NA KORE NOTUN WINDOW TE KHULBE
+
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("booking-page-form.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

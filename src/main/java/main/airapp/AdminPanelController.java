@@ -56,7 +56,7 @@ public class AdminPanelController extends Controller {
     }
 
     public void loadBookedFlights() throws IOException{
-        FXMLLoader pageBottom = new FXMLLoader(getClass().getResource("booking-page.fxml"));
+        FXMLLoader pageBottom = new FXMLLoader(getClass().getResource("booking-form.fxml"));
         infoPane.setCenter((pageBottom.load()));
         BookingPageController pageBottomController = pageBottom.getController();
         pageBottomController.getBookedFlights();

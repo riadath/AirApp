@@ -1,6 +1,7 @@
 package main.airapp;
 
 import database.repository.FlightRepository;
+import database.repository.TicketRepository;
 import datamodel.FlightInfo;
 import datamodel.TicketInfo;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class BookingPageFormController extends Controller {
     @FXML
@@ -43,8 +45,7 @@ public class BookingPageFormController extends Controller {
     private Button exitButton;
 
     public void initialize() {
-        ObservableList<String> ticketClassList = FXCollections.observableArrayList("First", "Business", "Economy");
-        ticketClassDropDown.setItems(ticketClassList);
+        ticketClassDropDown.setItems(FXCollections.observableArrayList("First", "Business", "Economy"));
     }
 
     public void searchFlights() {
@@ -145,18 +146,19 @@ public class BookingPageFormController extends Controller {
             errorLabel.setText("Enter Ticket Class");
             return;
         }
-        int seatNumber = -1,cnt = 0;
-        for(boolean i : flightInfo.getSeatAvailability()){
-            if(!i){
-                seatNumber = cnt + 1;
-//                flightInfo.getSeatAvailability()[cnt] = true;
-                //TODO : Change the seat availability on the database
-                break;
-            }
-            cnt++;
+        int seatNumber = flightInfo.getFirstSeatAvailable();
+        if (seatNumber > -1) {
+//            System.out.println(Arrays.toString(new String[]{name, email, country, passportNo, flightInfo.getId() + "", seatNumber + ""}));
+            new TicketRepository().insert(new String[]{name, email, country, passportNo, flightInfo.getId() + "", seatNumber + "", "0"});
+            flightInfo.confirmTicket();
+//            TicketInfo ticketInfo = new TicketInfo(name,email,country,passportNo,flightInfo,seatNumber);
         }
-        TicketInfo ticketInfo = new TicketInfo(name,email,country,passportNo,flightInfo,seatNumber);
+        else {
+            // TODO : Seat shesh hoye gele error label
+        }
 
-        exitButton.fire();
+        // TODO : exitButton fire na kore ekta confirmation or rejection label. Seat er theke ei label alada.
+
+//        exitButton.fire();
     }
 }

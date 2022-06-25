@@ -45,7 +45,6 @@ public class UserInfo {
         return name + " "  + email + " " + country + " " + passportNo;
     }
 
-
     public String getName() {return name;}
 
     public String getEmail() {return email;}
@@ -53,5 +52,9 @@ public class UserInfo {
     public String getCountry() {return country;}
 
     public String getPassportNo() {return passportNo;}
+
+    public boolean verifyUser (String name, String passportNo) {
+        return this.name.equals(name) && this.passportNo.equals(passportNo);
+    }
 
 }

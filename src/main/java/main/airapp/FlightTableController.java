@@ -114,13 +114,13 @@ public class FlightTableController {
 
         flightId.setCellValueFactory(new PropertyValueFactory<>("id"));
         airplaneName.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAirplane().getName()));
-        remainingSeat.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAirplane().getNumber_of_seats()));
+        remainingSeat.setCellValueFactory(new PropertyValueFactory<>("availableSeatNo"));
         flightSrc.setCellValueFactory(new PropertyValueFactory<>("source"));
         flightDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
         flightDate.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         flightTime.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
 
-        flightTable.setItems(new FlightRepository().flightAsObservableList());
+        flightTable.setItems(new FlightRepository().filterFlightAsObservableList(LocalDate.now(), LocalDate.MAX, null, null, null));
     }
 
 }
