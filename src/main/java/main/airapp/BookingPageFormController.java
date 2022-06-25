@@ -159,6 +159,8 @@ public class BookingPageFormController extends Controller {
 
         // TODO : exitButton fire na kore ekta confirmation or rejection label. Seat er theke ei label alada.
 
+        //TODO : Use set interval on label before exitbutton.fire()
+
 //        exitButton.fire();
     }
 }
