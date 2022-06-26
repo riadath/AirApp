@@ -4,7 +4,6 @@ import database.repository.FlightRepository;
 import database.repository.TicketRepository;
 import datamodel.FlightInfo;
 import datamodel.TicketInfo;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,12 +17,10 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
-public class BookingPageController extends Controller{
+public class BookingListPageController extends Controller{
 
     @FXML
     private ListView<TicketInfo> bookedSeatList;
@@ -80,16 +77,4 @@ public class BookingPageController extends Controller{
             }
         });
     }
-    //TODO : set all resizable to false
-    public void switchToBookingPageForm(ActionEvent event) throws IOException {
-
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("booking-page-form.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-    }
-
-
 }

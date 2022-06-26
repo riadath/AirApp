@@ -22,8 +22,9 @@
                         </padding>
                         <Button mnemonicParsing="false" onAction="#loadAirplanes" prefHeight="23.0" prefWidth="66.0" text="Airplanes" />
                         <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights" />
-                        <Button mnemonicParsing="false" onAction="#loadBookedFlights" text="Booking" />
+                        <Button mnemonicParsing="false" onAction="#loadBookedFlights" text="Bookings" />
                         <Button fx:id="checkInButton" mnemonicParsing="false" onAction="#switchToCheckinPage" text="Check In" />
+                        <Button mnemonicParsing="false" onAction="#switchToBookingPageForm" text="Book Ticket" />
                     </HBox>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

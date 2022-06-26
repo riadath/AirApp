@@ -56,9 +56,9 @@ public class AdminPanelController extends Controller {
     }
 
     public void loadBookedFlights() throws IOException{
-        FXMLLoader pageBottom = new FXMLLoader(getClass().getResource("booking-form.fxml"));
+        FXMLLoader pageBottom = new FXMLLoader(getClass().getResource("booking-list-page.fxml"));
         infoPane.setCenter((pageBottom.load()));
-        BookingPageController pageBottomController = pageBottom.getController();
+        BookingListPageController pageBottomController = pageBottom.getController();
         pageBottomController.getBookedFlights();
     }
 
@@ -78,6 +78,15 @@ public class AdminPanelController extends Controller {
         scene = new Scene(root);
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToBookingPageForm(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("booking-page-form.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -40,7 +40,6 @@
                         </VBox>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="warningLabel" textFill="RED" />
                               <Button mnemonicParsing="false" onAction="#filterFlight" text="Filter" />
                            </children>
                         </StackPane>
@@ -49,6 +48,7 @@
                               <Button fx:id="addFlight" mnemonicParsing="false" onAction="#switchToFlightsForm" text=" Add Flight" />
                            </children>
                         </StackPane>
+                        <Label fx:id="warningLabel" textFill="RED" />
                      </children>
                      <padding>
                         <Insets left="10.0" right="10.0" top="30.0" />
