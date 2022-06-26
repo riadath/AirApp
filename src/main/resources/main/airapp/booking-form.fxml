@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="543.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.BookingPageController">
     <children>
@@ -23,5 +25,15 @@
             </AnchorPane>
             </items>
         </SplitPane>
+      <Label layoutX="52.0" layoutY="14.0" prefHeight="17.0" prefWidth="138.0" text="Flight Due">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="234.0" layoutY="14.0" prefHeight="17.0" prefWidth="138.0" text="Tickets Booked">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

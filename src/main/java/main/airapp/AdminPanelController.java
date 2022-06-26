@@ -66,6 +66,7 @@ public class AdminPanelController extends Controller {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("maintenance-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -75,6 +76,7 @@ public class AdminPanelController extends Controller {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("checkin-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

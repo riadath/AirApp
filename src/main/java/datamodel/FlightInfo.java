@@ -19,20 +19,6 @@ public class FlightInfo {
     private Boolean[] seatAvailability;
     private int availableSeatNo;
 
-
-    public FlightInfo(int id, String flightName, String flightCode, int noOfSeats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
-        this.id = id;
-        this.flightName = flightName;
-        this.flightCode = flightCode;
-        this.noOfSeats = noOfSeats;
-        this.source = source;
-        this.destination = destination;
-        this.departureDate = departureDate;
-        this.departureTime = departureTime;
-        this.seatAvailability = new Boolean[noOfSeats];
-        this.availableSeatNo = noOfSeats;
-    }
-
     public FlightInfo(int id, String flightName, int noOfSeats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
         this.id = id;
         this.flightName = flightName;
@@ -42,15 +28,6 @@ public class FlightInfo {
         this.destination = destination;
         this.departureDate = departureDate;
         this.departureTime = departureTime;
-        this.seatAvailability = new Boolean[noOfSeats];
-        this.availableSeatNo = noOfSeats;
-    }
-
-    public FlightInfo(int id, String flightName, String flightCode, int noOfSeats) {
-        this.id = id;
-        this.flightName = flightName;
-        this.flightCode = flightCode;
-        this.noOfSeats = noOfSeats;
         this.seatAvailability = new Boolean[noOfSeats];
         this.availableSeatNo = noOfSeats;
     }

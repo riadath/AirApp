@@ -8,9 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="685.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.BookingPageFormController">
+
+<AnchorPane prefHeight="637.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.BookingPageFormController">
     <children>
-        <Button fx:id="exitButton" layoutX="804.0" layoutY="649.0" mnemonicParsing="false" onAction="#switchToAdminPage" prefHeight="27.0" prefWidth="54.0" text="Exit" textFill="#cd2727">
+        <Button fx:id="exitButton" layoutX="620.0" layoutY="562.0" mnemonicParsing="false" onAction="#switchToAdminPage" prefHeight="27.0" prefWidth="54.0" text="Exit" textFill="#cd2727">
             <font>
                 <Font name="Consolas Bold" size="14.0" />
             </font>
