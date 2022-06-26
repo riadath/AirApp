@@ -1,81 +1,82 @@
 package main.airapp;
 
-import datamodel.FlightInfo;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class AdminPanelController extends Controller {
 
-    @FXML
-    private TableColumn<?, ?> adminFlightsDepartureDate;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsDepartureDate;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsDepartureTime;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsAirplaneCode;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsSeatAvailable;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsDestination;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsId;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsName;
+//    @FXML
+//    private TableColumn<?, ?> adminFlightsSource;
+//    @FXML
+//    private TableView<FlightInfo> adminFlightsTable;
+//    @FXML
+//    private ListView<String> navbarList;
 
     @FXML
-    private TableColumn<?, ?> adminFlightsDepartureTime;
+    private BorderPane infoPane;
 
-    @FXML
-    private TableColumn<?, ?> adminFlightsDestination;
+    public void loadFlights() throws IOException {
 
-    @FXML
-    private TableColumn<?, ?> adminFlightsId;
-
-    @FXML
-    private TableColumn<?, ?> adminFlightsName;
-
-    @FXML
-    private TableColumn<?, ?> adminFlightsSource;
-
-    @FXML
-    private TableView<FlightInfo> adminFlightsTable;
-
-    //TODO: do some stuff noki
-
-    ObservableList<FlightInfo> listFlights = FXCollections.observableArrayList(
-            new FlightInfo(1,"Etihad Airways","Bangladesh","London", LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
-            new FlightInfo(2,"Emirates","Australia","Canada",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
-            new FlightInfo(3,"GMG","Singapore","Malaysia",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) )
-    );
-
-    ObservableList<FlightInfo> listAirplanes = FXCollections.observableArrayList(
-            new FlightInfo(1,"Etihad Airways" ),
-            new FlightInfo(2,"Emirates" ),
-            new FlightInfo(3,"GMG" )
-    );
-
-
-
-    public void loadFlights(){
-        adminFlightsId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("flightName"));
-        adminFlightsSource.setCellValueFactory( new PropertyValueFactory<>("source"));
-        adminFlightsDestination.setCellValueFactory( new PropertyValueFactory<>("destination"));
-        adminFlightsDepartureDate.setCellValueFactory( new PropertyValueFactory<>("departureDate"));
-        adminFlightsDepartureTime.setCellValueFactory( new PropertyValueFactory<>("departureTime"));
-
-        adminFlightsSource.setVisible(true);
-        adminFlightsDestination.setVisible(true);
-        adminFlightsDepartureDate.setVisible(true);
-        adminFlightsDepartureTime.setVisible(true);
-
-        adminFlightsTable.setItems(( listFlights ));
+        FXMLLoader pageBottom = new FXMLLoader(getClass().getResource("flight-table.fxml"));
+        infoPane.setCenter(pageBottom.load());
+        FlightTableController pageBottomController = pageBottom.getController();
+        pageBottomController.getFlight();
     }
-    public void loadAirplanes(){
-        adminFlightsId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        adminFlightsName.setCellValueFactory( new PropertyValueFactory<>("flightName"));
 
-        adminFlightsSource.setVisible(false);
-        adminFlightsDestination.setVisible(false);
-        adminFlightsDepartureDate.setVisible(false);
-        adminFlightsDepartureTime.setVisible(false);
+    public void loadAirplanes() throws IOException {
 
-        adminFlightsTable.setItems(( listAirplanes ));
+        FXMLLoader pageBottom = new FXMLLoader(getClass().getResource("airplane-table.fxml"));
+        infoPane.setCenter((pageBottom.load()));
+        AirplaneTableController pageBottomController = pageBottom.getController();
+        pageBottomController.getAirplane();
 
+    }
+
+    public void loadBookedFlights() throws IOException{
+        FXMLLoader pageBottom = new FXMLLoader(getClass().getResource("booking-form.fxml"));
+        infoPane.setCenter((pageBottom.load()));
+        BookingPageController pageBottomController = pageBottom.getController();
+        pageBottomController.getBookedFlights();
+    }
+
+    public void switchToMaintenancePage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("maintenance-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    public void switchToCheckinPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("checkin-page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

@@ -14,21 +14,7 @@ public class LoginInfo {
         this.password = password;
     }
 
-    public Integer isValid() {
-        /* TODO: user ar admin auth er jonne different scene e switch korbe
-
-         */
-        int ret = 0;
-
-        if (username.contains(".")) {
-            if (new AuthRepository().userAuth(username, password)) {
-                ret = 1;
-            }
-        } else {
-            if (new AuthRepository().adminAuth(username, password)) {
-                ret = 2;
-            }
-        }
-        return ret;
+    public boolean isValid() {
+        return new AuthRepository().adminAuth(username, password);
     }
 }

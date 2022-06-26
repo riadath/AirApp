@@ -13,13 +13,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import main.airapp.Controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class FlightScheduleController extends Controller{
+public class FlightScheduleController extends Controller {
 
     @FXML
     private TableView<FlightInfo> FlightScheduler;

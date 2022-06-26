@@ -1,5 +1,6 @@
 package main.airapp;
 
+import database.DB;
 import datamodel.LoginInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,11 +11,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.*;
 import javafx.stage.*;
+import main.airapp.Controller;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginPageController extends Controller{
+public class LoginPageController extends Controller {
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -28,25 +30,17 @@ public class LoginPageController extends Controller{
 
     @FXML
     public void switchToMenu(ActionEvent event) throws IOException {
-
         LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
-        int validityCheck = loginInfo.isValid();
-        if (validityCheck == 0) {
+        boolean validityCheck = loginInfo.isValid();
+        if (!validityCheck) {
             wrongPassLabel.setText("Username or Password incorrect!");
             return;
         }
-        wrongPassLabel.setText("");
-        String fxmlPath = "admin-panel-page.fxml";
-        if(validityCheck == 1){
-            fxmlPath = "user-menu-page.fxml";
-        }
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin-panel-page.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-
     }
 
 

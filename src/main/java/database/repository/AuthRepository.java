@@ -22,8 +22,7 @@ public class AuthRepository extends DB {
                 + "\" AND password=\"" + password + "\";";
         ResultSet account = select_query(adminAuthQuery);
         try {
-            return account.getString("username").equals(username) &&
-                    account.getString("password").equals(password);
+            return !account.isClosed();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -2,6 +2,8 @@ package database;
 
 
 import java.sql.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DB {
     private static final String dbLink = "jdbc:sqlite:src/main/resources/AirAppDb.db";
@@ -47,6 +49,31 @@ public class DB {
             System.out.println("<---" + query + "---->");
             System.out.println(e.getSQLState());
         }
+    }
+
+    public void update_query (String query) {
+        try {
+            connection.prepareStatement(query).executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Insert query failed for query: ");
+            System.out.println("<---" + query + "---->");
+            System.out.println(e.getSQLState());
+        }
+    }
+
+    public String[] getColAsString(String col, String table_name) {
+        final String query = "SELECT " + col + " FROM " + table_name;
+        ResultSet rs = select_query(query);
+        Set<String> ret = new HashSet<>();
+        try {
+            while (rs.next()) {
+                ret.add(rs.getString(col));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String[] retString = new String[ret.size()];
+        return ret.toArray(retString);
     }
 
     public ResultSet list(String table_name) {

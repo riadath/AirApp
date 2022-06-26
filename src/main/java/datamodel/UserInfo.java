@@ -8,14 +8,12 @@ public class UserInfo {
     private String email;
     private String country;
     private String passportNo;
-    private String password;
 
-    public UserInfo(String name, String email, String countryOfResidence, String passportNo, String password) {
+    public UserInfo(String name, String email, String countryOfResidence, String passportNo) {
         this.name = name;
         this.email = email;
         this.country = countryOfResidence;
         this.passportNo = passportNo;
-        this.password = password;
     }
 
     public UserInfo(ResultSet userInfo) {
@@ -24,8 +22,6 @@ public class UserInfo {
             email = userInfo.getString("email");
             country = userInfo.getString("country");
             passportNo = userInfo.getString("passportNo");
-            password = userInfo.getString("password");
-
         } catch  (SQLException e) {
             System.out.println("User Initialization failed. ALl values set to null");
 
@@ -33,7 +29,6 @@ public class UserInfo {
             email = null;
             country = null;
             passportNo = null;
-            password = null;
 
             e.printStackTrace();
         }
@@ -41,15 +36,14 @@ public class UserInfo {
 
     public String[] toArray() {
         return new String[]{
-                name, email, country, passportNo, password
+                name, email, country, passportNo
         };
     }
 
     @Override
     public String toString() {
-        return name + " "  + email + " " + country + " " + passportNo + " " + password;
+        return name + " "  + email + " " + country + " " + passportNo;
     }
-
 
     public String getName() {return name;}
 
@@ -59,5 +53,8 @@ public class UserInfo {
 
     public String getPassportNo() {return passportNo;}
 
-    public String getPassword() {return password;}
+    public boolean verifyUser (String name, String passportNo) {
+        return this.name.equals(name) && this.passportNo.equals(passportNo);
+    }
+
 }
