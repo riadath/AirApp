@@ -29,7 +29,7 @@ public class LoginPageController extends Controller {
     private Label wrongPassLabel;
 
     @FXML
-    public void switchToMenu(ActionEvent event) throws IOException {
+    public void switchToAdminPage(ActionEvent event) throws IOException {
         LoginInfo loginInfo = new LoginInfo(usernameTextField.getText(), passwordField.getText());
         boolean validityCheck = loginInfo.isValid();
         if (!validityCheck) {

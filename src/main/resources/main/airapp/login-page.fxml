@@ -13,7 +13,7 @@
     <children>
         <TextField fx:id="usernameTextField" layoutX="331.0" layoutY="141.0" prefHeight="25.0" prefWidth="173.0" promptText="Email" />
         <PasswordField fx:id="passwordField" layoutX="331.0" layoutY="212.0" prefHeight="25.0" prefWidth="173.0" promptText="Password" />
-        <Button fx:id="loginButton" layoutX="368.0" layoutY="257.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="35.0" prefWidth="79.0" />
+        <Button fx:id="loginButton" layoutX="368.0" layoutY="257.0" mnemonicParsing="false" onAction="#switchToAdminPage" prefHeight="35.0" prefWidth="79.0" />
         <ImageView fitHeight="35.0" fitWidth="27.0" layoutX="297.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@images/username-logo.png" />

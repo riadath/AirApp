@@ -50,15 +50,7 @@ public class FlightInfo {
         this.departureTime = time;
         this.availableSeatNo= remainingSeats;
     }
-
-    public FlightInfo( String source, String destination, LocalDate departureDate, LocalTime departureTime) {
-        this.airplane = airplane;
-        this.source = source;
-        this.destination = destination;
-        this.departureDate = departureDate;
-        this.departureTime = departureTime;
-    }
-
+    
     public int getId() {
         return id;
     }
