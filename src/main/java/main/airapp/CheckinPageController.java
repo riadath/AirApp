@@ -72,6 +72,11 @@ public class CheckinPageController extends Controller {
             return;
         }
 
+        if (ticketInfo.isCheckedIn()) {
+            errorLabel.setText("Already Checked In");
+            return;
+        }
+
         ticketInfo.setCheckIn();
         errorLabel.setTextFill(Paint.valueOf("green"));
         errorLabel.setText("Checked in!");
