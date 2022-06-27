@@ -8,11 +8,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BookingPageFormController extends Controller {
     @FXML
@@ -53,8 +56,9 @@ public class BookingPageFormController extends Controller {
         String source = sourceTextFiled.getText();
         String destination = destinationTextField.getText();
         LocalDate date = datePicker.getValue();
+
         if (source.isEmpty() || destination.isEmpty()) {
-            errorLabel.setText("Invalid Input");
+            errorLabel.setText("Enter Source/Destination");
             return;
         }
 
@@ -64,9 +68,12 @@ public class BookingPageFormController extends Controller {
         }
 
         // checks for flights in 48hr range from selected date.
-        ObservableList<FlightInfo> availableFlights =  new FlightRepository().filterFlightAsObservableList(
+        ObservableList<FlightInfo> availableFlights = new FlightRepository().filterFlightAsObservableList(
                 date.minusDays(1), date.plusDays(1), source, destination, null
         );
+        if (availableFlights.size() > 0)
+            errorLabel.setTextFill(Color.rgb(0, 200, 0));
+        else errorLabel.setTextFill(Color.rgb(200, 0, 0));
         errorLabel.setText(availableFlights.size() + " Flight" + (availableFlights.size() == 1 ? "" : "s") + " Found");
         flightDropDown.setItems(availableFlights);
 
@@ -102,7 +109,6 @@ public class BookingPageFormController extends Controller {
             }
         });
 
-        // TODO: available flight er length >0 hoile error label er color green maybe?
 
     }
 
@@ -118,6 +124,7 @@ public class BookingPageFormController extends Controller {
         String passportNo = passportNoTextField.getText();
         String email = emailTexitField.getText();
         String country = countryTextFiled.getText();
+
         if (flightDropDown.getSelectionModel().isEmpty()) {
             errorLabel.setText("No Flight is Selected");
             return;
@@ -126,7 +133,7 @@ public class BookingPageFormController extends Controller {
             errorLabel.setText("Select Number of Passengers");
             return;
         }
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             errorLabel.setText("Enter Name");
             return;
         }
@@ -142,23 +149,33 @@ public class BookingPageFormController extends Controller {
             errorLabel.setText("Enter Country of Residence");
             return;
         }
-        if(ticketClassDropDown.getSelectionModel().isEmpty()){
+        if (ticketClassDropDown.getSelectionModel().isEmpty()) {
             errorLabel.setText("Enter Ticket Class");
             return;
         }
         int seatNumber = flightInfo.getFirstSeatAvailable();
-        if (seatNumber > -1) {
+        if (seatNumber != -1) {
 //            System.out.println(Arrays.toString(new String[]{name, email, country, passportNo, flightInfo.getId() + "", seatNumber + ""}));
             new TicketRepository().insert(new String[]{name, email, country, passportNo, flightInfo.getId() + "", seatNumber + "", "0"});
             flightInfo.confirmTicket();
-//            TicketInfo ticketInfo = new TicketInfo(name,email,country,passportNo,flightInfo,seatNumber);
-        }
-        else {
-            // TODO : Seat shesh hoye gele error label
+            errorLabel.setTextFill(Color.rgb(0, 200, 0));
+            errorLabel.setText("Ticket Successfully Booked");
+
+
+            //Reseting all the textfield
+            sourceTextFiled.setText(null);
+            destinationTextField.setText(null);
+            datePicker.setValue(null);
+            numberOfTickets.setText(null);
+            nameTextField.setText(null);
+            passportNoTextField.setText(null);
+            emailTexitField.setText(null);
+            countryTextFiled.setText(null);
+
+        } else {
+            errorLabel.setTextFill(Color.rgb(200, 0, 0));
+            errorLabel.setText("Seat Unavailable");
         }
 
-        // TODO : exitButton fire na kore ekta confirmation or rejection label. Seat er theke ei label alada.
-
-//        exitButton.fire();
     }
 }

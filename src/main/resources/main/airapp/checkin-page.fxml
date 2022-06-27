@@ -9,69 +9,72 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.CheckinPageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="main.airapp.CheckinPageController">
     <children>
-      <VBox layoutX="-2.0" layoutY="-2.0" prefHeight="407.0" prefWidth="392.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Ticket Id: ">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="ticketIdTextField" promptText="Ticket Id" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Name:">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="nameTextField" promptText="Name" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Passport No:">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="passportTextField" promptText="Passport No" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label prefHeight="42.0" prefWidth="109.0" text="Luggages:" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="luggageTextField" promptText="Number of Luggages" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#checkIn" prefHeight="42.0" prefWidth="93.0" text="Check In" textFill="#15861d">
-                     <font>
-                        <Font name="Consolas Bold" size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="20.0" left="50.0" top="50.0" />
-         </padding>
-      </VBox>
-        <Button fx:id="exitButton" layoutX="534.0" layoutY="322.0" mnemonicParsing="false" onAction="#switchToAdminPage" text="Exit" />
-      <Label fx:id="errorLabel" layoutX="333.0" layoutY="33.0" prefHeight="42.0" prefWidth="228.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
+        <VBox layoutX="-2.0" layoutY="-2.0" prefHeight="407.0" prefWidth="392.0">
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Ticket Id: ">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="ticketIdTextField" promptText="Ticket Id"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Name:">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="nameTextField" promptText="Name"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Passport No:">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="passportTextField" promptText="Passport No"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label prefHeight="42.0" prefWidth="109.0" text="Luggages:" wrapText="true">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="luggageTextField" promptText="Number of Luggages"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#checkIn" prefHeight="42.0" prefWidth="93.0"
+                                text="Check In" textFill="#15861d">
+                            <font>
+                                <Font name="Consolas Bold" size="14.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="50.0" top="50.0"/>
+            </padding>
+        </VBox>
+        <Button fx:id="exitButton" layoutX="534.0" layoutY="322.0" mnemonicParsing="false" onAction="#switchToAdminPage"
+                text="Exit"/>
+        <Label fx:id="errorLabel" layoutX="333.0" layoutY="33.0" prefHeight="42.0" prefWidth="228.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>

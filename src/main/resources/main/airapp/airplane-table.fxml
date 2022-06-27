@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.AirplaneTableController">
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="main.airapp.AirplaneTableController">
     <children>
-        <SplitPane dividerPositions="0.29797979797979796" layoutX="87.0" layoutY="83.0" prefHeight="400.0"
-                   prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <children>
-                        <ListView fx:id="navbarList" layoutX="-54.0" layoutY="35.0" prefHeight="398.0" prefWidth="175.0"
-                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                  AnchorPane.topAnchor="0.0"/>
-                    </children>
-                </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <children>
-                        <TableView fx:id="airplaneTable" layoutY="67.0" prefHeight="398.0" prefWidth="417.0"
-                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <columns>
-                                <TableColumn fx:id="airplaneId" prefWidth="75.0" text="id"/>
-                                <TableColumn fx:id="airplaneName" prefWidth="75.0" text="Name"/>
-                                <TableColumn fx:id="airplaneCode" prefWidth="75.0" text="Code"/>
-                                <TableColumn fx:id="airplaneSeat" prefWidth="75.0" text="No Of Seats"/>
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
-            </items>
-        </SplitPane>
+        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                    minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <SplitPane dividerPositions="0.29797979797979796" layoutX="87.0" layoutY="83.0" prefHeight="400.0"
+                           prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <children>
+                                <ListView fx:id="navbarList" layoutX="-54.0" layoutY="35.0" prefHeight="398.0"
+                                          prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <children>
+                                <TableView fx:id="airplaneTable" layoutY="67.0" prefHeight="398.0" prefWidth="417.0"
+                                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columns>
+                                        <TableColumn fx:id="airplaneId" prefWidth="75.0" text="id"/>
+                                        <TableColumn fx:id="airplaneName" prefWidth="75.0" text="Name"/>
+                                        <TableColumn fx:id="airplaneCode" prefWidth="75.0" text="Code"/>
+                                        <TableColumn fx:id="airplaneSeat" prefWidth="75.0" text="No Of Seats"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </AnchorPane>
+        <Button fx:id="addAirplane" mnemonicParsing="false" onAction="#switchToAirplaneForm" prefHeight="25.0"
+                prefWidth="88.0" text="Add Airplane">
+            <VBox.margin>
+                <Insets left="510.0"/>
+            </VBox.margin>
+        </Button>
     </children>
-</AnchorPane>
+</VBox>

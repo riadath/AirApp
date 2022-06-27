@@ -4,7 +4,6 @@ import database.repository.FlightRepository;
 import database.repository.TicketRepository;
 import datamodel.FlightInfo;
 import datamodel.TicketInfo;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,12 +17,10 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
-public class BookingPageController extends Controller{
+public class BookingListPageController extends Controller{
 
     @FXML
     private ListView<TicketInfo> bookedSeatList;
@@ -31,8 +28,6 @@ public class BookingPageController extends Controller{
     private ListView<FlightInfo> flightList;
 
     public void getBookedFlights(){
-
-        // TODO : ADD LABELS ON TOP OF TWO LISTVIEWS. LEFT TOP E "FLIGHTS DUE",  MID TOP E "TICKETS BOOKED"
 
         ObservableList<FlightInfo> flightFetched = new FlightRepository().filterFlightAsObservableList(LocalDate.now(), LocalDate.MAX, null, null, null);
 
@@ -82,17 +77,4 @@ public class BookingPageController extends Controller{
             }
         });
     }
-
-    public void switchToBookingPageForm(ActionEvent event) throws IOException {
-
-        // TODO : CHECK IF THIS CAN BE DONE ON A NEW WINDOW. AGER WINDOW REPLACE NA KORE NOTUN WINDOW TE KHULBE
-
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("booking-page-form.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
 }
