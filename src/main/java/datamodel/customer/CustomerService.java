@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public interface CustomerService {
 
-    public ArrayList<Integer> getHistory (String flight);
-    public ArrayList<Integer> getTendency (String flightClass);
+    ArrayList<Integer> getHistory(String flight);
+    ArrayList<Integer> getTendency(String flightClass);
+    boolean verifyUser(String name, String passport);
 
 }

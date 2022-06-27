@@ -1,5 +1,6 @@
 package main.airapp;
 
+import datamodel.customer.UserInfo;
 import datamodel.fleet.FlightInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class FlightScheduleController extends Controller {
@@ -49,6 +51,12 @@ public class FlightScheduleController extends Controller {
             new FlightInfo(1,"Emirates",100,"Australia","Canada",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) ),
             new FlightInfo(1,"GMG",50,"Singapore","Malaysia",LocalDate.of(2022,2,19), LocalTime.of(10,43,12) )
     );
+
+    public void checkHistory () {
+        ArrayList<Integer> arr;
+        arr = new UserInfo().getHistory("21");
+        arr = new UserInfo().getTendency("21");
+    }
 
     public void initialize() {
         FlightID.setCellValueFactory(new PropertyValueFactory<>("id"));

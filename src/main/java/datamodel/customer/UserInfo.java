@@ -39,6 +39,8 @@ public class UserInfo implements CustomerService{
         }
     }
 
+    public UserInfo() { }
+
     public String[] toArray() {
         return new String[]{
                 name, email, country, passportNo

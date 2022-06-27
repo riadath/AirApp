@@ -50,10 +50,6 @@ public class CheckinPageController extends Controller {
             errorLabel.setText("Enter the Passport number");
             return;
         }
-        if(luggage.isEmpty()){
-            errorLabel.setText("Enter the number of luggage");
-            return;
-        }
 
         Passenger user = new Passenger(name, "", "", passport, luggage);
         user.checkTicketValidity();
@@ -75,6 +71,11 @@ public class CheckinPageController extends Controller {
 
         if (Integer.parseInt(luggage) > 36) {
             errorLabel.setText("Overweight");
+            return;
+        }
+
+        if (ticketInfo.getId() == 18 && !luggage.isEmpty()) {
+            errorLabel.setText("No luggage allowed on a military aircraft");
             return;
         }
 

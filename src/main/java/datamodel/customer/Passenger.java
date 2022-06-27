@@ -19,6 +19,7 @@ public class Passenger extends UserInfo{
     }
 
     public boolean checkTicketValidity () {
+        if (ticket == null) return false;
         return ticket.isCheckedIn();
     }
 
