@@ -7,15 +7,21 @@ import datamodel.FlightInfo;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
-public class FlightTableController {
+public class FlightTableController extends Controller {
 
     @FXML
     private ComboBox<AirplaneInfo> airplaneBox;
@@ -114,13 +120,21 @@ public class FlightTableController {
 
         flightId.setCellValueFactory(new PropertyValueFactory<>("id"));
         airplaneName.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAirplane().getName()));
-        remainingSeat.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAirplane().getNumber_of_seats()));
+        remainingSeat.setCellValueFactory(new PropertyValueFactory<>("availableSeatNo"));
         flightSrc.setCellValueFactory(new PropertyValueFactory<>("source"));
         flightDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
         flightDate.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
         flightTime.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
 
-        flightTable.setItems(new FlightRepository().flightAsObservableList());
+        flightTable.setItems(new FlightRepository().filterFlightAsObservableList(LocalDate.now(), LocalDate.MAX, null, null, null));
+    }
+
+    public void switchToFlightsForm(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("flights-page-form.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

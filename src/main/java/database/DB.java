@@ -51,6 +51,16 @@ public class DB {
         }
     }
 
+    public void update_query (String query) {
+        try {
+            connection.prepareStatement(query).executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Insert query failed for query: ");
+            System.out.println("<---" + query + "---->");
+            System.out.println(e.getSQLState());
+        }
+    }
+
     public String[] getColAsString(String col, String table_name) {
         final String query = "SELECT " + col + " FROM " + table_name;
         ResultSet rs = select_query(query);

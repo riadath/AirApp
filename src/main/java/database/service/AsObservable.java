@@ -2,6 +2,7 @@ package database.service;
 
 import datamodel.AirplaneInfo;
 import datamodel.FlightInfo;
+import datamodel.TicketInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,10 +11,11 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 
-public class AsObserbavle {
+public class AsObservable {
 
-    public AsObserbavle() {}
+    public AsObservable() {}
 
     public ObservableList<FlightInfo> flightToObservable (ResultSet rs) {
         ObservableList<FlightInfo> ret = FXCollections.observableArrayList();
@@ -32,7 +34,8 @@ public class AsObserbavle {
                         rs.getString("source"),
                         rs.getString("destination"),
                         time.toLocalDate(),
-                        time.toLocalTime()
+                        time.toLocalTime(),
+                        rs.getInt("remainingSeats")
                 ));
             }
         } catch (SQLException e) {
@@ -51,9 +54,7 @@ public class AsObserbavle {
                         rs.getString("code"),
                         rs.getInt("no_of_seats")
                 );
-//                System.out.println(airplane + "p\n\n");
                 if (!ret.contains(airplane)){
-//                    System.out.println("here");
                     ret.add(airplane);
                 }
             }
@@ -75,6 +76,38 @@ public class AsObserbavle {
                             rs.getInt("no_of_seats")
                     ));
                 }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public ObservableList<TicketInfo> ticketToObservable (ResultSet rs) {
+
+        ObservableList<TicketInfo> ret = FXCollections.observableArrayList();
+
+        try {
+            while (rs.next()) {
+
+                ZonedDateTime time = Instant.ofEpochMilli(rs.getInt("departure") * 1000L).atZone(ZoneId.systemDefault());
+
+                ret.add(new TicketInfo(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("countryOfResidence"),
+                        rs.getString("passportNo"),
+                        new FlightInfo(
+                                rs.getInt("flightId"),
+                                rs.getString("source"),
+                                rs.getString("destination"),
+                                time.toLocalDate(),
+                                time.toLocalTime(),
+                                rs.getInt("remainingSeats")
+                        ),
+                        rs.getInt("seatNumber")
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
