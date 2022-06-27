@@ -79,13 +79,13 @@ public class FlightTableController extends Controller {
 
     // fills the combobox that holds the list of airplane names scheduled flights
     private void fillCombo () {
-        airplaneBox.setItems(new AirplaneRepository().airplaneAsObservable());
+        airplaneBox.setItems(new AirplaneRepository().filterAirplaneAsObservable());
 
         // sets the thing to show on teh display box
         airplaneBox.setConverter(new StringConverter<>() {
             @Override
             public String toString(AirplaneInfo airplaneInfo) {
-                if(airplaneInfo == null) return "<Airplane Filter>";
+                if(airplaneInfo == null) return "Airplane Filter";
                 return airplaneInfo.getName();
             }
 
@@ -118,13 +118,29 @@ public class FlightTableController extends Controller {
 
         fillCombo();
 
+        flightTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         flightId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        flightId.setMaxWidth(1f * Integer.MAX_VALUE * 5);
+
         airplaneName.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAirplane().getName()));
+        airplaneName.setMaxWidth(1f * Integer.MAX_VALUE * 15);
+
         remainingSeat.setCellValueFactory(new PropertyValueFactory<>("availableSeatNo"));
+        remainingSeat.setMaxWidth(1f * Integer.MAX_VALUE * 20);
+
         flightSrc.setCellValueFactory(new PropertyValueFactory<>("source"));
+        flightSrc.setMaxWidth(1f * Integer.MAX_VALUE * 15);
+
         flightDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        flightDest.setMaxWidth(1f * Integer.MAX_VALUE * 15);
+
         flightDate.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
+        flightDate.setMaxWidth(1f * Integer.MAX_VALUE * 15);
+
         flightTime.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
+        flightTime.setMaxWidth(1f * Integer.MAX_VALUE * 15);
+
 
         flightTable.setItems(new FlightRepository().filterFlightAsObservableList(LocalDate.now(), LocalDate.MAX, null, null, null));
     }

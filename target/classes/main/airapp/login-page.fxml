@@ -9,34 +9,43 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@loginPageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.LoginPageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+      prefWidth="800.0" styleClass="backgroundColor" stylesheets="@loginPageStyle.css"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="main.airapp.LoginPageController">
     <children>
-        <TextField fx:id="usernameTextField" layoutX="307.0" layoutY="141.0" prefHeight="25.0" prefWidth="173.0" promptText="Email" />
-        <PasswordField fx:id="passwordField" layoutX="307.0" layoutY="212.0" prefHeight="25.0" prefWidth="173.0" promptText="Password" />
-        <Button fx:id="loginButton" layoutX="371.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToMenu" text="Login" />
-        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="250.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+        <TextField fx:id="usernameTextField" layoutX="307.0" layoutY="141.0" prefHeight="25.0" prefWidth="173.0"
+                   promptText="Email"/>
+        <PasswordField fx:id="passwordField" layoutX="307.0" layoutY="212.0" prefHeight="25.0" prefWidth="173.0"
+                       promptText="Password"/>
+        <Button fx:id="loginButton" layoutX="371.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToMenu"
+                text="Login"/>
+        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="250.0" layoutY="136.0" pickOnBounds="true"
+                   preserveRatio="true">
             <image>
-                <Image url="@images/usernameLogo.jpg" />
+                <Image url="@images/usernameLogo.jpg"/>
             </image>
         </ImageView>
-        <ImageView fitHeight="41.0" fitWidth="35.0" layoutX="250.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="41.0" fitWidth="35.0" layoutX="250.0" layoutY="211.0" pickOnBounds="true"
+                   preserveRatio="true">
             <image>
-                <Image url="@images/passwordLogo.png" />
+                <Image url="@images/passwordLogo.png"/>
             </image>
         </ImageView>
         <Label layoutX="314.0" layoutY="73.0" prefHeight="52.0" prefWidth="160.0" text="Air App">
             <font>
-                <Font size="35.0" />
+                <Font size="35.0"/>
             </font>
         </Label>
         <ImageView fitHeight="66.0" fitWidth="88.0" layoutX="361.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@images/airplaneLogo.png" />
+                <Image url="@images/airplaneLogo.png"/>
             </image>
         </ImageView>
-        <Label fx:id="wrongPassLabel" layoutX="158.0" layoutY="106.0" prefHeight="38.0" prefWidth="284.0" textFill="RED">
+        <Label fx:id="wrongPassLabel" layoutX="158.0" layoutY="106.0" prefHeight="38.0" prefWidth="284.0"
+               textFill="RED">
             <font>
-                <Font size="19.0" />
+                <Font size="19.0"/>
             </font>
         </Label>
     </children>

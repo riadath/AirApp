@@ -1,25 +1,23 @@
 package main.airapp;
 
 import database.repository.AirplaneRepository;
+import database.repository.FlightRepository;
 import datamodel.AirplaneInfo;
-import datamodel.FlightInfo;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.time.ZoneOffset;
 
 public class FlightsPageFormController extends Controller {
 
     @FXML
     private ComboBox<AirplaneInfo> airplanesDropDown;
-
-    @FXML
-    private Button button;
 
     @FXML
     private DatePicker departureDate;
@@ -37,12 +35,13 @@ public class FlightsPageFormController extends Controller {
     private Label errorlabel;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         fillCombo();
     }
 
     public void makeFlight() {
 
+        AirplaneInfo airplane = airplanesDropDown.getSelectionModel().getSelectedItem();
 
         String FlightSource = source.getText();
 
@@ -50,30 +49,52 @@ public class FlightsPageFormController extends Controller {
 
         LocalDate FlightDate = departureDate.getValue();
 
-        String temp = departureTime.getText();
-        if( !temp.isEmpty() ) {
-            LocalTime FlightTime;
-            String[] arr = temp.split(":");
-            FlightTime = LocalTime.of(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
-        }
+        LocalTime FlightTime;
 
-        if (airplanesDropDown.getSelectionModel().isEmpty()) {
+        String flightTimeString = departureTime.getText();
+
+        if (airplane == null) {
             errorlabel.setText("Select Airplane");
-        }
-        else if (FlightSource.isEmpty()) {
+            return;
+        } else if (FlightSource.isEmpty()) {
             errorlabel.setText("Enter Flight Source");
+            return;
         } else if (FlightDestination.isEmpty()) {
             errorlabel.setText("Enter Flight Destination");
-        } else if (FlightDate == null ) {
+            return;
+        } else if (FlightDate == null) {
             errorlabel.setText("Enter Flight Date");
-        }  else if (temp.isEmpty()) {
-            errorlabel.setText("Enter Flight Time");
-        }else {
-            errorlabel.setTextFill(Color.GREEN);
-            errorlabel.setText("Flight Added Successfully!!");
-            //     FlightInfo newFlight = new FlightInfo(FlightSource,FlightDestination,FlightDate,FlightTime);
-            // TODO : assign id and make object
+            return;
         }
+
+        if (flightTimeString.isEmpty()) {
+            errorlabel.setText("Enter Flight Time");
+            return;
+        } else {
+            try {
+                if (!flightTimeString.contains(":")) throw new NumberFormatException();
+                String[] arr = flightTimeString.split(":");
+                FlightTime = LocalTime.of(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]));
+            } catch (NumberFormatException e) {
+                errorlabel.setText("Time Format Parse Error. Please use HH:MM format");
+                return;
+            } catch (DateTimeException e) {
+                errorlabel.setText("Enter a valid time in the HH:MM format");
+                return;
+            }
+        }
+
+        new FlightRepository().insert(new String[]{
+                airplane.getCode(),
+                FlightSource,
+                FlightDestination,
+                FlightDate.toEpochSecond(LocalTime.MIN, ZoneOffset.MIN) + FlightTime.toSecondOfDay() + "",
+                airplane.getNumber_of_seats() + ""
+        });
+
+        errorlabel.setTextFill(Color.GREEN);
+        errorlabel.setText("Flight Added Successfully!!");
+
 
     }
 
@@ -84,7 +105,7 @@ public class FlightsPageFormController extends Controller {
         airplanesDropDown.setConverter(new StringConverter<>() {
             @Override
             public String toString(AirplaneInfo airplaneInfo) {
-                if (airplaneInfo == null) return "<Airplane Filter>";
+                if (airplaneInfo == null) return "Airplane";
                 return airplaneInfo.getName();
             }
 
@@ -105,14 +126,13 @@ public class FlightsPageFormController extends Controller {
                         if (item == null || empty) {
                             setGraphic(null);
                         } else {
-                            setText(item.getName());
+                            setText(item.getName() + " " + item.getCode());
                         }
                     }
                 };
             }
         });
     }
-
 
 
 }
