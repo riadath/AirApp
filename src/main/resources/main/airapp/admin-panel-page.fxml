@@ -8,45 +8,34 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane prefHeight="613.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="main.airapp.AdminPanelController">
-    <SplitPane dividerPositions="0.24951267056530213" orientation="VERTICAL" prefHeight="515.0" prefWidth="937.0"
-               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-               AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.AdminPanelController">
+    <SplitPane dividerPositions="0.24951267056530213" orientation="VERTICAL" prefHeight="515.0" prefWidth="937.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-            <SplitPane dividerPositions="0.7738478027867095" layoutX="120.0" layoutY="-35.0" prefHeight="125.0"
-                       prefWidth="935.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.7738478027867095" layoutX="120.0" layoutY="-35.0" prefHeight="125.0" prefWidth="935.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <HBox alignment="CENTER" prefHeight="125.0" prefWidth="935.0" spacing="38.0"
-                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                          AnchorPane.topAnchor="0.0">
+                    <HBox alignment="CENTER" prefHeight="125.0" prefWidth="935.0" spacing="38.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <opaqueInsets>
-                            <Insets/>
+                            <Insets />
                         </opaqueInsets>
                         <padding>
-                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                         </padding>
-                        <Button mnemonicParsing="false" onAction="#loadAirplanes" prefHeight="23.0" prefWidth="66.0"
-                                text="Airplanes"/>
-                        <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights"/>
-                        <Button mnemonicParsing="false" onAction="#loadBookedFlights" text="Bookings"/>
-                        <Button fx:id="checkInButton" mnemonicParsing="false" onAction="#switchToCheckinPage"
-                                text="Check In"/>
-                        <Button mnemonicParsing="false" onAction="#switchToBookingPageForm" text="Book Ticket"/>
+                        <Button mnemonicParsing="false" onAction="#loadAirplanes" prefHeight="23.0" prefWidth="66.0" text="Airplanes" />
+                        <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights" />
+                        <Button mnemonicParsing="false" onAction="#loadBookedFlights" text="Bookings" />
+                        <Button fx:id="checkInButton" mnemonicParsing="false" onAction="#switchToCheckinPage" text="Check In" />
+                        <Button mnemonicParsing="false" onAction="#switchToBookingPageForm" text="Book Ticket" />
                     </HBox>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <StackPane prefHeight="123.0" prefWidth="208.0" AnchorPane.bottomAnchor="0.0"
-                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <Button mnemonicParsing="false" onAction="#switchToLoginMenu" text="Log Out" textFill="RED"/>
+                    <StackPane prefHeight="123.0" prefWidth="208.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button mnemonicParsing="false" onAction="#switchToLoginMenu" text="Log Out" textFill="RED" />
                     </StackPane>
                 </AnchorPane>
             </SplitPane>
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-            <BorderPane fx:id="infoPane" prefHeight="382.0" prefWidth="935.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+            <BorderPane fx:id="infoPane" prefHeight="400.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         </AnchorPane>
     </SplitPane>
 </AnchorPane>
