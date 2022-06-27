@@ -1,8 +1,8 @@
 package database.service;
 
-import datamodel.AirplaneInfo;
-import datamodel.FlightInfo;
-import datamodel.TicketInfo;
+import datamodel.fleet.AirplaneInfo;
+import datamodel.fleet.FlightInfo;
+import datamodel.customer.TicketInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 
 public class AsObservable {
 

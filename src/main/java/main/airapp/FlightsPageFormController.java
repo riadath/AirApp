@@ -2,7 +2,12 @@ package main.airapp;
 
 import database.repository.AirplaneRepository;
 import database.repository.FlightRepository;
-import datamodel.AirplaneInfo;
+import datamodel.fleet.AirplaneInfo;
+import datamodel.fleet.CivilianFlight;
+import datamodel.fleet.FlightInfo;
+import datamodel.fleet.MilitaryFlight;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -13,6 +18,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 
 public class FlightsPageFormController extends Controller {
 
@@ -22,8 +28,13 @@ public class FlightsPageFormController extends Controller {
     @FXML
     private DatePicker departureDate;
 
+    private final boolean isCivilianFlight = true;
+
     @FXML
     private TextField departureTime;
+
+    @FXML
+    private ComboBox<String> flightType;
 
     @FXML
     private TextField destination;
@@ -44,6 +55,8 @@ public class FlightsPageFormController extends Controller {
         AirplaneInfo airplane = airplanesDropDown.getSelectionModel().getSelectedItem();
 
         String FlightSource = source.getText();
+
+        FlightInfo flightInfo;
 
         String FlightDestination = destination.getText();
 
@@ -67,6 +80,7 @@ public class FlightsPageFormController extends Controller {
             return;
         }
 
+
         if (flightTimeString.isEmpty()) {
             errorlabel.setText("Enter Flight Time");
             return;
@@ -83,6 +97,14 @@ public class FlightsPageFormController extends Controller {
                 return;
             }
         }
+
+        if (isCivilianFlight) {
+            flightInfo = new CivilianFlight(0, FlightSource, FlightDestination, FlightDate, FlightTime, airplane.getNumber_of_seats());
+        } else {
+            flightInfo = new MilitaryFlight(0, FlightSource, FlightDestination, FlightDate, FlightTime, airplane.getNumber_of_seats());
+        }
+
+        flightInfo.confirmTicket();
 
         new FlightRepository().insert(new String[]{
                 airplane.getCode(),
@@ -114,6 +136,8 @@ public class FlightsPageFormController extends Controller {
                 return null;
             }
         });
+
+        flightType.setItems(FXCollections.observableArrayList("Civilian", "Military"));
 
         // sets the things to show on the list
         airplanesDropDown.setCellFactory(new Callback<>() {

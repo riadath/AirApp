@@ -2,23 +2,16 @@ package main.airapp;
 
 import database.repository.FlightRepository;
 import database.repository.TicketRepository;
-import datamodel.FlightInfo;
-import datamodel.TicketInfo;
+import datamodel.fleet.FlightInfo;
+import datamodel.customer.TicketInfo;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class BookingListPageController extends Controller{
 
@@ -39,10 +32,7 @@ public class BookingListPageController extends Controller{
 
         flightList.setItems(flightFetched);
 
-
-        flightList.setOnMouseClicked(mouseEvent -> {
-            bookedSeatList.setItems(ticketFetched.get(flightList.getSelectionModel().getSelectedItem().getId()));
-        });
+        flightList.setOnMouseClicked(mouseEvent -> bookedSeatList.setItems(ticketFetched.get(flightList.getSelectionModel().getSelectedItem().getId())));
 
         flightList.setCellFactory(new Callback<>() {
             @Override
@@ -68,9 +58,10 @@ public class BookingListPageController extends Controller{
                     protected void updateItem(TicketInfo item, boolean empty) {
                         super.updateItem(item, empty);
                         if (item == null || empty) {
+                            setText(null);
                             setGraphic(null);
                         } else {
-                            setText(item.getPassengerDetails());
+                            setText((item.isCheckedIn() ? "[Checked In]" : "") + item.getId() + " - " + item.getPassengerDetails());
                         }
                     }
                 };

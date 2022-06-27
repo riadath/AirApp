@@ -2,10 +2,13 @@ package database.repository;
 
 import database.DB;
 import database.service.AsObservable;
-import datamodel.FlightInfo;
+import datamodel.fleet.FlightInfo;
 import javafx.collections.ObservableList;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.*;
+import java.util.ArrayList;
 
 public class FlightRepository extends DB {
 
@@ -37,6 +40,31 @@ public class FlightRepository extends DB {
                 (source == null ? "" : " and Flight.source=\"" + source + "\"") +
                 (destination == null ? "" : " and Flight.destination=\"" + destination + "\"");
         return asObservable.flightToObservable(select_query(query));
+    }
+
+    public ArrayList<Integer> getHistory (String flightId) {
+        final String query = "select id from Flight where flightId=" + flightId;
+        return getIntegers(query);
+    }
+
+
+    private ArrayList<Integer> getIntegers(String query) {
+        ResultSet rs = select_query(query);
+        ArrayList<Integer> ret = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                ret.add(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public ArrayList<Integer> getTendency (String flightClass) {
+        final String query = "select id from Flight where flightClass=" + flightClass;
+        return getIntegers(query);
     }
 
     public void insert(String[] values) {

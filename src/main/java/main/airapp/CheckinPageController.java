@@ -1,7 +1,9 @@
 package main.airapp;
 
 import database.repository.TicketRepository;
-import datamodel.TicketInfo;
+import datamodel.customer.Passenger;
+import datamodel.customer.TicketInfo;
+import datamodel.customer.UserInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -53,6 +55,10 @@ public class CheckinPageController extends Controller {
             return;
         }
 
+        Passenger user = new Passenger(name, "", "", passport, luggage);
+        user.checkTicketValidity();
+        user.checkLuggageValidity();
+
         TicketRepository ticketRepository = new TicketRepository();
 
         TicketInfo ticketInfo = ticketRepository.getTicket(Integer.parseInt(ticketId));
@@ -69,6 +75,11 @@ public class CheckinPageController extends Controller {
 
         if (Integer.parseInt(luggage) > 36) {
             errorLabel.setText("Overweight");
+            return;
+        }
+
+        if (ticketInfo.isCheckedIn()) {
+            errorLabel.setText("Already Checked In");
             return;
         }
 

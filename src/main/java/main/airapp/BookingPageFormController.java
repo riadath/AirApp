@@ -2,8 +2,7 @@ package main.airapp;
 
 import database.repository.FlightRepository;
 import database.repository.TicketRepository;
-import datamodel.FlightInfo;
-import datamodel.TicketInfo;
+import datamodel.fleet.FlightInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,9 +12,6 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class BookingPageFormController extends Controller {
     @FXML
