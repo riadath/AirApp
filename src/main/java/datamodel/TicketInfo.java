@@ -4,6 +4,7 @@ import database.repository.TicketRepository;
 
 public class TicketInfo extends UserInfo {
 
+
     private int id;
     FlightInfo flightInfo;
     private boolean ticketState;
@@ -34,6 +35,9 @@ public class TicketInfo extends UserInfo {
         this.seatNumber = seatNumber;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public FlightInfo getFlightInfo() {
         return flightInfo;
@@ -43,7 +47,7 @@ public class TicketInfo extends UserInfo {
         this.flightInfo = flightInfo;
     }
 
-    public boolean isTicketState() {
+    public boolean isCheckedIn() {
         return ticketState;
     }
 
@@ -56,7 +60,7 @@ public class TicketInfo extends UserInfo {
     }
 
     public String getPassengerDetails () {
-        return getSeatNumber() + " - " + getName() + " - " + getPassportNo();
+        return getName() + " - " + getPassportNo() + "; Seat - " + getSeatNumber();
     }
 
     public void setCheckIn () {

@@ -11,9 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import main.airapp.Controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -39,9 +37,6 @@ public class FlightScheduleController extends Controller {
 
     @FXML
     private TableColumn<FlightInfo, String> FlightName;
-
-    @FXML
-    private AnchorPane FlightTable;
 
     @FXML
     private TableColumn<FlightInfo, Integer> No_Of_Seats;

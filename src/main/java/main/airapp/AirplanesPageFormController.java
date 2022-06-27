@@ -1,15 +1,10 @@
 package main.airapp;
 
-import database.repository.TicketRepository;
-import datamodel.AirplaneInfo;
-import datamodel.FlightInfo;
+import database.repository.AirplaneRepository;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-
-import java.time.LocalDate;
 
 public class AirplanesPageFormController extends Controller {
 
@@ -20,42 +15,41 @@ public class AirplanesPageFormController extends Controller {
     private TextField AirplaneNameTextField;
 
     @FXML
-    private Button ConfirmButton;
-
-    @FXML
     private TextField NoOfSeatsTextField;
 
     @FXML
     private Label errorlabel;
 
-    @FXML
-    private Button AirplaneFormExit;
-
 
     public void makeAirplane() {
-        String Name = AirplaneNameTextField.getText();
+        String name = AirplaneNameTextField.getText();
         String code = AirplaneCodeTextField.getText();
-        Integer NoOfSeats = -1;
-        if( ! NoOfSeatsTextField.getText().isEmpty() ){
-            NoOfSeats = Integer.parseInt( NoOfSeatsTextField.getText() );
+        int NoOfSeats;
+        if (!NoOfSeatsTextField.getText().isEmpty()) {
+            try {
+                NoOfSeats = Integer.parseInt(NoOfSeatsTextField.getText());
+            } catch (NumberFormatException e) {
+                errorlabel.setText("Number Of Seats Must be an Integer");
+                return;
+            }
+        } else {
+            errorlabel.setText("Enter Number Of Seats");
+            return;
         }
-        Integer id;
-        System.out.println(Name);
-        System.out.println(NoOfSeats);
 
-        if( Name.isEmpty() ){
+        if (name.isEmpty()) {
             errorlabel.setText("Enter Airplane Name");
-        }
-        else if( code.isEmpty() ){
+            return;
+        } else if (code.isEmpty()) {
             errorlabel.setText("Enter Airplane Code");
+            return;
         }
-        else if( NoOfSeatsTextField.getText().isEmpty() ){
-            errorlabel.setText("Enter No Of Seats");
-        }
-        else{
-            errorlabel.setTextFill(Color.GREEN);
-            errorlabel.setText("Airplane Added Successfully!!");
-        }
+
+        new AirplaneRepository().insert(new String[]{name, code, NoOfSeats + ""});
+
+        errorlabel.setTextFill(Color.GREEN);
+        errorlabel.setText("Airplane Added Successfully!!");
+
     }
 
 }

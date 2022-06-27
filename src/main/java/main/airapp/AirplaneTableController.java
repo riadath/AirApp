@@ -45,13 +45,10 @@ public class AirplaneTableController extends Controller {
         navbarList.getItems().clear();
         for (String x : temp_str) navbarList.getItems().add(x);
 
-        navbarList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                String manufacturer = navbarList.getSelectionModel().getSelectedItem();
-                if (manufacturer != null) {
-                    airplaneTable.setItems(new AirplaneRepository().airplaneAsObservable(manufacturer));
-                }
+        navbarList.setOnMouseClicked(mouseEvent -> {
+            String manufacturer = navbarList.getSelectionModel().getSelectedItem();
+            if (manufacturer != null) {
+                airplaneTable.setItems(new AirplaneRepository().airplaneAsObservable(manufacturer));
             }
         });
 
