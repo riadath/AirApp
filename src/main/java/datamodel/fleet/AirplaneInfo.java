@@ -1,12 +1,15 @@
-package datamodel;
+package datamodel.fleet;
 
-public class AirplaneInfo {
+public class AirplaneInfo extends AirFleet{
     private final Integer id;
     private final String name;
     private final String code;
     private final Integer number_of_seats;
 
     public AirplaneInfo(Integer id, String name, String code, Integer number_of_seats) {
+
+        if (!super.checkAircraftIdInit(id)) addAirCraft(id);
+
         this.id = id;
         this.name = name;
         this.code = code;

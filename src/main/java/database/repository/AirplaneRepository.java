@@ -2,7 +2,7 @@ package database.repository;
 
 import database.DB;
 import database.service.AsObservable;
-import datamodel.AirplaneInfo;
+import datamodel.fleet.AirplaneInfo;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;

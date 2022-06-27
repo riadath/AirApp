@@ -1,6 +1,6 @@
 package main.airapp;
 
-import datamodel.FlightInfo;
+import datamodel.fleet.FlightInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

@@ -1,7 +1,9 @@
 package main.airapp;
 
 import database.repository.TicketRepository;
-import datamodel.TicketInfo;
+import datamodel.customer.Passenger;
+import datamodel.customer.TicketInfo;
+import datamodel.customer.UserInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -52,6 +54,10 @@ public class CheckinPageController extends Controller {
             errorLabel.setText("Enter the number of luggage");
             return;
         }
+
+        Passenger user = new Passenger(name, "", "", passport, luggage);
+        user.checkTicketValidity();
+        user.checkLuggageValidity();
 
         TicketRepository ticketRepository = new TicketRepository();
 

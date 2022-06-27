@@ -1,12 +1,11 @@
-package datamodel;
+package datamodel.fleet;
 
 import database.repository.FlightRepository;
-import database.repository.TicketRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class FlightInfo {
+public class FlightInfo extends AirFleet{
     private int id;
     private String flightName;
     private String flightCode;
@@ -20,6 +19,13 @@ public class FlightInfo {
     private int availableSeatNo;
 
     public FlightInfo(int id, String flightName, int noOfSeats, String source, String destination, LocalDate departureDate, LocalTime departureTime) {
+
+        if (!checkFlightIdInit(id)) {
+            if (LocalDate.now().isBefore(departureDate)) {
+                super.addPendingFlightCount(id);
+            }
+        }
+
         this.id = id;
         this.flightName = flightName;
         this.noOfSeats = noOfSeats;
@@ -33,6 +39,13 @@ public class FlightInfo {
     }
 
     public FlightInfo(int id, AirplaneInfo airplane, String source, String destination, LocalDate date, LocalTime time, int remainingSeats) {
+
+        if (!checkFlightIdInit(id)) {
+            if (LocalDate.now().isBefore(date)) {
+                super.addPendingFlightCount(id);
+            }
+        }
+
         this.id = id;
         this.airplane = airplane;
         this.source = source;
@@ -43,20 +56,19 @@ public class FlightInfo {
     }
 
     public FlightInfo(int id, String source, String destination, LocalDate date, LocalTime time, int remainingSeats) {
+
+        if (!checkFlightIdInit(id)) {
+            if (LocalDate.now().isBefore(date)) {
+                super.addPendingFlightCount(id);
+            }
+        }
+
         this.id = id;
         this.source = source;
         this.destination = destination;
         this.departureDate = date;
         this.departureTime = time;
         this.availableSeatNo= remainingSeats;
-    }
-
-    public FlightInfo( String source, String destination, LocalDate departureDate, LocalTime departureTime) {
-        this.airplane = airplane;
-        this.source = source;
-        this.destination = destination;
-        this.departureDate = departureDate;
-        this.departureTime = departureTime;
     }
 
     public int getId() {

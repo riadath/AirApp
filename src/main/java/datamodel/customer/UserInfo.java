@@ -1,13 +1,18 @@
-package datamodel;
+package datamodel.customer;
+
+import database.repository.FlightRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class UserInfo {
+public class UserInfo implements CustomerService{
     private String name;
     private String email;
     private String country;
     private String passportNo;
+
+    private final FlightRepository flightRepository = new FlightRepository();
 
     public UserInfo(String name, String email, String countryOfResidence, String passportNo) {
         this.name = name;
@@ -44,6 +49,13 @@ public class UserInfo {
     public String toString() {
         return name + " "  + email + " " + country + " " + passportNo;
     }
+
+    public ArrayList<Integer> getHistory (String flightId) {
+        return flightRepository.getHistory(flightId);
+    };
+    public ArrayList<Integer> getTendency (String flightClass) {
+        return  flightRepository.getTendency(flightClass);
+    };
 
     public String getName() {return name;}
 

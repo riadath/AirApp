@@ -2,7 +2,7 @@ package database.repository;
 
 
 import database.DB;
-import datamodel.UserInfo;
+import datamodel.customer.UserInfo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

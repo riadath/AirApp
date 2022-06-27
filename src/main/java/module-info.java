@@ -9,4 +9,8 @@ module main.airapp {
 
     exports main.airapp;
     exports datamodel;
+    exports datamodel.fleet;
+    opens datamodel.fleet to javafx.fxml;
+    exports datamodel.customer;
+    opens datamodel.customer to javafx.fxml;
 }

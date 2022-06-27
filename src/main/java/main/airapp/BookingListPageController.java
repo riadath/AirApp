@@ -2,8 +2,8 @@ package main.airapp;
 
 import database.repository.FlightRepository;
 import database.repository.TicketRepository;
-import datamodel.FlightInfo;
-import datamodel.TicketInfo;
+import datamodel.fleet.FlightInfo;
+import datamodel.customer.TicketInfo;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;

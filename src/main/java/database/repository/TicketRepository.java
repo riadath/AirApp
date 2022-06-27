@@ -2,11 +2,12 @@ package database.repository;
 
 import database.DB;
 import database.service.AsObservable;
-import datamodel.TicketInfo;
+import datamodel.customer.TicketInfo;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TicketRepository extends DB {
 
@@ -67,6 +68,30 @@ public class TicketRepository extends DB {
             e.printStackTrace();
         }
         return checkInCond;
+    }
+
+    public ArrayList<Integer> getTendency (String flightClass) {
+        final String query = "select id from Tickets where flightClass=" + flightClass;
+        return getIntegers(query);
+    }
+
+    public ArrayList<Integer> getHistory (String flightId) {
+        final String query = "select id from Tickets where flightId=" + flightId;
+        return getIntegers(query);
+    }
+
+    private ArrayList<Integer> getIntegers(String query) {
+        ResultSet rs = select_query(query);
+        ArrayList<Integer> ret = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                ret.add(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 
     public void setCheckIn (int ticketId) {

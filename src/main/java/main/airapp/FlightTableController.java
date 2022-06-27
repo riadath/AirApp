@@ -2,8 +2,8 @@ package main.airapp;
 
 import database.repository.AirplaneRepository;
 import database.repository.FlightRepository;
-import datamodel.AirplaneInfo;
-import datamodel.FlightInfo;
+import datamodel.fleet.AirplaneInfo;
+import datamodel.fleet.FlightInfo;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
