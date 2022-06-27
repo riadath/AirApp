@@ -1,3 +1,11 @@
 .backgroundColor{
     -fx-background-image: url("images/signupBg.jpg");
 }
+
+#loginButton{
+    -fx-graphic: url("images/log-in-button.png");
+}
+
+#loginButton{
+    -fx-graphic: url("images/log-in-button.png");
+}
