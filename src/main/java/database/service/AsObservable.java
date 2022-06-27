@@ -48,15 +48,12 @@ public class AsObservable {
         ObservableList<AirplaneInfo> ret = FXCollections.observableArrayList();
         try {
             while (rs.next()) {
-                AirplaneInfo airplane = new AirplaneInfo(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("code"),
-                        rs.getInt("no_of_seats")
-                );
-                if (!ret.contains(airplane)){
-                    ret.add(airplane);
-                }
+                ret.add(new AirplaneInfo(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("code"),
+                    rs.getInt("no_of_seats")
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,6 +72,26 @@ public class AsObservable {
                             rs.getString("code"),
                             rs.getInt("no_of_seats")
                     ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public ObservableList<AirplaneInfo> filterAirplaneToObservable (ResultSet rs) {
+        ObservableList<AirplaneInfo> ret = FXCollections.observableArrayList();
+        try {
+            while (rs.next()) {
+                AirplaneInfo airplane = new AirplaneInfo(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("code"),
+                        rs.getInt("no_of_seats")
+                );
+                if (!ret.contains(airplane)){
+                    ret.add(airplane);
                 }
             }
         } catch (SQLException e) {

@@ -23,6 +23,10 @@ public class AirplaneRepository extends DB {
         return asObservable.airplaneToObservable(list(table_name));
     }
 
+    public ObservableList<AirplaneInfo> filterAirplaneAsObservable () {
+        return asObservable.filterAirplaneToObservable(list(table_name));
+    }
+
     public ObservableList<AirplaneInfo> airplaneAsObservable(String manufacturer) {
         if (manufacturer.length() == 0) return airplaneAsObservable();
         return asObservable.airplaneToObservable(list(table_name), manufacturer);
