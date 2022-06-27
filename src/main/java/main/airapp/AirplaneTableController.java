@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,6 +21,7 @@ import java.util.Objects;
 
 public class AirplaneTableController extends Controller {
 
+    public Button addAirplane;
     @FXML
     private TableView<AirplaneInfo> airplaneTable;
 
