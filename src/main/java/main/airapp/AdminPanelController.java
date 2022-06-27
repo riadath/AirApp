@@ -62,15 +62,6 @@ public class AdminPanelController extends Controller {
         pageBottomController.getBookedFlights();
     }
 
-    public void switchToMaintenancePage(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("maintenance-page.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 
     public void switchToCheckinPage(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("checkin-page.fxml")));
