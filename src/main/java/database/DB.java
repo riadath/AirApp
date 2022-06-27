@@ -2,6 +2,8 @@ package database;
 
 
 import java.sql.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DB {
     private static final String dbLink = "jdbc:sqlite:src/main/resources/AirAppDb.db";
@@ -49,19 +51,29 @@ public class DB {
         }
     }
 
-    public void insert_query_alt (String name, String code, Integer no_of_seats) {
+    public void update_query (String query) {
         try {
-            final String query = "INSERT into Airplane (name, code, no_of_seats) VALUES (?,?,?)";
-            PreparedStatement pstmt = connection.prepareStatement(query);
+            connection.prepareStatement(query).executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Insert query failed for query: ");
+            System.out.println("<---" + query + "---->");
+            System.out.println(e.getSQLState());
+        }
+    }
 
-            pstmt.setString(1, name);
-            pstmt.setString(2, code);
-            pstmt.setInt(3, no_of_seats);
-            pstmt.execute();
-            pstmt.close();
+    public String[] getColAsString(String col, String table_name) {
+        final String query = "SELECT " + col + " FROM " + table_name;
+        ResultSet rs = select_query(query);
+        Set<String> ret = new HashSet<>();
+        try {
+            while (rs.next()) {
+                ret.add(rs.getString(col));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        String[] retString = new String[ret.size()];
+        return ret.toArray(retString);
     }
 
     public ResultSet list(String table_name) {

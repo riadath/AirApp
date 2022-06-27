@@ -2,70 +2,51 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="515.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.airapp.AdminPanelController">
-   <children>
-      <GridPane prefHeight="515.0" prefWidth="937.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" percentWidth="21.0" prefWidth="211.0" />
-          <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="414.0" minWidth="10.0" percentWidth="28.0" prefWidth="414.0" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="308.0" minWidth="10.0" percentWidth="28.0" prefWidth="86.0" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="377.0" minWidth="10.0" prefWidth="377.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="20.0" prefHeight="100.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
-        </rowConstraints>
-         <children>
-            <StackPane GridPane.columnIndex="3">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#switchToLoginMenu" text="Exit" />
-               </children>
-            </StackPane>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="835.0" spacing="50.0" GridPane.columnSpan="3">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#loadAirplanes" text="Airplanes" />
-                  <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights" />
-                  <Button mnemonicParsing="false" text="Maintenance" />
-                  <Button mnemonicParsing="false" text="Booking" />
-                  <Button mnemonicParsing="false" text="Pilot" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </padding>
-            </HBox>
-            <TableView fx:id="adminFlightsTable" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
-              <columns>
-                <TableColumn fx:id="adminFlightsId" prefWidth="60.0" text="ID" />
-                <TableColumn fx:id="adminFlightsName" prefWidth="152.0" text="Airplane Name" />
-                  <TableColumn fx:id="adminFlightsAirplaneCode" prefWidth="75.0" text="Airplane Code" />
-                  <TableColumn fx:id="adminFlightsSeatAvailable" prefWidth="75.0" text="Seats Available" />
-                  <TableColumn fx:id="adminFlightsSource" prefWidth="114.0" text="Source" />
-                  <TableColumn fx:id="adminFlightsDestination" prefWidth="114.0" text="Destination" />
-                  <TableColumn fx:id="adminFlightsDepartureDate" prefWidth="170.0" text="Departure Date" />
-                  <TableColumn fx:id="adminFlightsDepartureTime" maxWidth="129.0" prefWidth="129.0" text="Departure Time" />
-              </columns>
-            </TableView>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
-               <children>
-                  <ListView fx:id="navbarList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
-         </children>
-      </GridPane>
-   </children>
+<AnchorPane prefHeight="613.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="main.airapp.AdminPanelController">
+    <SplitPane dividerPositions="0.24951267056530213" orientation="VERTICAL" prefHeight="515.0" prefWidth="937.0"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <SplitPane dividerPositions="0.7738478027867095" layoutX="120.0" layoutY="-35.0" prefHeight="125.0"
+                       prefWidth="935.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <HBox alignment="CENTER" prefHeight="125.0" prefWidth="935.0" spacing="38.0"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                          AnchorPane.topAnchor="0.0">
+                        <opaqueInsets>
+                            <Insets/>
+                        </opaqueInsets>
+                        <padding>
+                            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                        </padding>
+                        <Button mnemonicParsing="false" onAction="#loadAirplanes" prefHeight="23.0" prefWidth="66.0"
+                                text="Airplanes"/>
+                        <Button mnemonicParsing="false" onAction="#loadFlights" text="Flights"/>
+                        <Button mnemonicParsing="false" onAction="#loadBookedFlights" text="Bookings"/>
+                        <Button fx:id="checkInButton" mnemonicParsing="false" onAction="#switchToCheckinPage"
+                                text="Check In"/>
+                        <Button mnemonicParsing="false" onAction="#switchToBookingPageForm" text="Book Ticket"/>
+                    </HBox>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <StackPane prefHeight="123.0" prefWidth="208.0" AnchorPane.bottomAnchor="0.0"
+                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button mnemonicParsing="false" onAction="#switchToLoginMenu" text="Log Out" textFill="RED"/>
+                    </StackPane>
+                </AnchorPane>
+            </SplitPane>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <BorderPane fx:id="infoPane" prefHeight="382.0" prefWidth="935.0" AnchorPane.bottomAnchor="0.0"
+                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        </AnchorPane>
+    </SplitPane>
 </AnchorPane>
