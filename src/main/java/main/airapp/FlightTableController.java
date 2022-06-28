@@ -104,6 +104,7 @@ public class FlightTableController extends Controller {
                     protected void updateItem(AirplaneInfo item, boolean empty) {
                         super.updateItem(item, empty);
                         if (item == null || empty) {
+                            setText(null);
                             setGraphic(null);
                         } else {
                             setText(item.getName());

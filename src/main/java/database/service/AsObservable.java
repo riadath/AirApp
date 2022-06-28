@@ -122,7 +122,8 @@ public class AsObservable {
                                 time.toLocalTime(),
                                 rs.getInt("remainingSeats")
                         ),
-                        rs.getInt("seatNumber")
+                        rs.getInt("seatNumber"),
+                        rs.getBoolean("checkedIn")
                 ));
             }
         } catch (SQLException e) {

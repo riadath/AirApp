@@ -26,11 +26,23 @@ public class TicketInfo implements CustomerService {
     }
 
     public TicketInfo(int id, String name, String email, String countryOfResidence,
+                      String passportNo, FlightInfo flightInfo,int seatNumber, boolean ticketState) {
+        user = new UserInfo(name, email, countryOfResidence, passportNo);
+        this.id = id;
+        this.flightInfo = flightInfo;
+        this.ticketState = ticketState;
+        this.seatNumber = seatNumber;
+        ticketRepository = new TicketRepository();
+
+    }
+
+    public TicketInfo(int id, String name, String email, String countryOfResidence,
                       String passportNo, int seatNumber, boolean checkedIn) {
         user = new UserInfo(name, email, countryOfResidence, passportNo);
         this.id = id;
         this.ticketState = checkedIn;
         this.seatNumber = seatNumber;
+        ticketRepository = new TicketRepository();
     }
 
     public ArrayList<Integer> getHistory (String flight) {
